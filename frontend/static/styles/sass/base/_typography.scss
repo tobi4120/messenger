@@ -1,0 +1,58 @@
+@font-face {
+    src: url(../../fonts/circular-black.woff2);
+    font-family: circular-black;
+    
+}
+@font-face {
+    src: url(../../fonts/circular-bold.woff2);
+    font-family: circular-bold;
+    
+}
+@font-face {
+    src: url(../../fonts/circular-medium.woff2);
+    font-family: circular-medium;
+    
+}
+@font-face {
+    src: url(../../fonts/circular-book.woff2);
+    font-family: circular-book;
+    
+}
+@font-face {
+    src: url(../../fonts/circular-light.woff2);
+    font-family: circular-light;
+    
+}
+
+.paragraph {
+    color: $color-primary;
+    font-family: circular-book, $back-up-fonts;
+    display: inline-block;
+    line-height: 1.1;
+    font-size: 1rem;
+
+    border-bottom: 1px solid rgba(0,0,0,0);
+
+    &:hover {
+        border-bottom: 1px solid $color-primary;
+    }
+}
+
+.heading-primary {
+    color: $color-primary;
+    font-size: 2.8rem;
+    font-family: circular-black, $back-up-fonts;
+    padding: 0;
+}
+
+.heading-secondary {
+    color: $color-primary;
+    font-family: circular-bold, $back-up-fonts;
+    font-size: 1.5rem;
+}
+
+.heading-tertiary {
+    color: $color-primary;
+    font-size: 1.2rem;
+    font-family: circular-medium, $back-up-fonts;
+}

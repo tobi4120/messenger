@@ -1,0 +1,225 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+body {
+  box-sizing: border-box; }
+
+ul {
+  list-style-type: none; }
+
+a {
+  text-decoration: none; }
+
+button {
+  background-color: rgba(0, 0, 0, 0);
+  border: none; }
+
+@font-face {
+  src: url(../../fonts/circular-black.woff2);
+  font-family: circular-black; }
+
+@font-face {
+  src: url(../../fonts/circular-bold.woff2);
+  font-family: circular-bold; }
+
+@font-face {
+  src: url(../../fonts/circular-medium.woff2);
+  font-family: circular-medium; }
+
+@font-face {
+  src: url(../../fonts/circular-book.woff2);
+  font-family: circular-book; }
+
+@font-face {
+  src: url(../../fonts/circular-light.woff2);
+  font-family: circular-light; }
+
+.paragraph {
+  color: white;
+  font-family: circular-book, Helvetica, sans-serif;
+  display: inline-block;
+  line-height: 1.1;
+  font-size: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0); }
+  .paragraph:hover {
+    border-bottom: 1px solid white; }
+
+.heading-primary {
+  color: white;
+  font-size: 2.8rem;
+  font-family: circular-black, Helvetica, sans-serif;
+  padding: 0; }
+
+.heading-secondary {
+  color: white;
+  font-family: circular-bold, Helvetica, sans-serif;
+  font-size: 1.5rem; }
+
+.heading-tertiary {
+  color: white;
+  font-size: 1.2rem;
+  font-family: circular-medium, Helvetica, sans-serif; }
+
+.home {
+  display: flex;
+  height: 100vh; }
+
+.menu {
+  flex: 0.25;
+  border-right: 1px solid black; }
+
+@media (max-width: 770px) {
+  .home {
+    display: block; }
+    .home__dashboard {
+      padding: 55px 40px;
+      padding-bottom: 120px; }
+  .menu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 70px;
+    z-index: 100;
+    padding: 0; }
+    .menu .spotify-logo {
+      display: none; }
+    .menu .menu-pages {
+      display: flex; }
+      .menu .menu-pages a {
+        flex: 1; }
+      .menu .menu-pages li {
+        height: 100%;
+        border-top: 4px solid rgba(1, 1, 1, 0);
+        border-left: none; }
+        .menu .menu-pages li:hover {
+          border-top: 4px solid #1db954; }
+      .menu .menu-pages .active {
+        border-top: 4px solid #1db954; }
+  .profile__header__username {
+    font-size: 2.3rem; }
+  .profile__header .logout {
+    margin-bottom: 65px; }
+  .profile__body {
+    display: block; }
+    .profile__body__top-artists {
+      width: 100%;
+      margin-bottom: 55px; }
+    .profile__body__top-tracks {
+      width: 100%;
+      margin-left: 0; }
+  .top-header {
+    flex-direction: column;
+    width: 100%; }
+    .top-header h1 {
+      margin-bottom: 35px; }
+  .top-artists li {
+    width: 150px; }
+    .top-artists li .artist-image {
+      width: 150px;
+      height: 150px; }
+    .top-artists li .user-icon {
+      width: 150px;
+      height: 150px; }
+  .toggle-btns {
+    display: flex;
+    width: 100%;
+    justify-content: center; }
+    .toggle-btns .btn-container {
+      flex: 1;
+      margin-right: 0 !important;
+      text-align: center; }
+  .artist-page__image {
+    margin-top: 60px;
+    width: 200px;
+    height: 200px; }
+  .artist-page .heading-primary {
+    font-size: 3.1rem; }
+  .track-page__general-info img {
+    width: 200px;
+    height: 200px; }
+  .track-page__general-info .heading-primary {
+    font-size: 1.8rem; }
+  .track-page__general-info .track-artist-name {
+    font-size: 1.2rem; }
+  .track-page__analysis__table__track-data {
+    font-size: 1.5rem; }
+  .recent-tracks__heading {
+    text-align: center; }
+  .heading-playlists {
+    text-align: center; }
+  .playlists {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+  .reccomendations h1 {
+    text-align: center; } }
+
+@media (max-width: 400px) {
+  .home__dashboard {
+    padding: 35px 25px;
+    padding-bottom: 120px; }
+  .profile__header__username {
+    font-size: 2rem; }
+  .profile .heading-tertiary {
+    font-size: 1.1rem; }
+  .profile .body-btn {
+    padding: 7px 17px; }
+  .top-artists li {
+    width: 120px; }
+    .top-artists li .artist-image {
+      width: 120px;
+      height: 120px; }
+    .top-artists li .user-icon {
+      width: 120px;
+      height: 120px; }
+  .toggle-btns button {
+    font-size: 0.8rem; } }
+
+@media (max-width: 525px) {
+  .artist-page__image {
+    margin-top: 50px; }
+  .artist-page .heading-primary {
+    font-size: 2.4rem;
+    text-align: center; }
+  .artist-page__stats {
+    gap: 15px; }
+    .artist-page__stats__group {
+      margin-right: 0; }
+    .artist-page__stats__stat {
+      font-size: 1.1rem !important; }
+  .track-page__general-info {
+    flex-direction: column;
+    align-items: center; }
+    .track-page__general-info__info {
+      margin-left: 0;
+      text-align: center; }
+      .track-page__general-info__info .heading-primary {
+        margin-top: 25px; }
+  .track-page__analysis {
+    margin-top: 50px; }
+  .track-page__feature-chart {
+    width: 100%; } }
+
+@media (max-width: 600px) {
+  .track-page__analysis__table {
+    grid-template-columns: repeat(2, minmax(100px, 1fr)); } }
+
+@media (max-width: 825px) {
+  .playlist {
+    flex-direction: column;
+    align-items: center; }
+    .playlist__left {
+      margin-right: 0;
+      width: 100%; }
+      .playlist__left .playlist-name {
+        text-align: center; }
+      .playlist__left__features {
+        margin-bottom: 40px; } }
+
+@media (max-width: 500px) {
+  .error .heading-secondary {
+    font-size: 1.4rem;
+    text-align: center; } }
