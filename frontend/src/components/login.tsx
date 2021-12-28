@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { handleChange } from "../helperFunctions/handleChange";
-import { login } from "./API/auth";
+import { login, getUserData, logout } from "./API/auth";
 import { Navigate } from 'react-router-dom';
 
 interface stateFields {
@@ -16,12 +16,22 @@ const Login = () => {
         authenticated: false
     });
 
-    // Check if user is logged in. If so then log them out.
     useEffect(() => {
-        if (localStorage.getItem('token') !== null) {
-            //this.props.logout() - TODO
-        }
+        checkForToken();
     }, []);
+
+    // Check if user is logged in. If so then log them out.
+    const checkForToken = async (): Promise<void> => {
+        if (localStorage.getItem('token') !== null) {
+            const response = await getUserData();
+            
+            if (response === "Invalid token.") {
+                localStorage.removeItem("token");
+            } else {
+                logout();
+            }
+        }
+    }
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault(); 

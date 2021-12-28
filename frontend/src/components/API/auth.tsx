@@ -10,6 +10,21 @@ const headers = {
 axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
 
+// Get user data from token
+export const getUserData = async (): Promise<object | string | undefined> => {
+    let error = null;
+
+    const response = await axios.get("/userAPI", {headers: {
+        Authorization: `Token ${localStorage.getItem('token')}`
+    }})
+    .catch((err) => {
+        error = err.response.data.detail;
+    });
+
+    if (error) return error
+    if (response) return response
+}
+
 // Login
 export const login = async (email: string, password: string): Promise<string | undefined> => {
     let error = "";
@@ -48,4 +63,19 @@ export const register = async (first_name: string, last_name: string, email: str
     // Put token in local storage
     if (response) 
         localStorage.setItem('token', response.data.token);
+}
+
+// Logout 
+export const logout = async ():Promise<void> => {
+    // Delete token from server
+    const new_headers = {
+        'X-CSRFToken': getCookie('csrftoken') || "",
+        'Authorization': `Token ${localStorage.getItem('token')}`
+        };
+
+    await axios.post('/logoutAPI', {
+    }, { headers: new_headers });
+
+    // Remove token from local storage
+    localStorage.removeItem('token');
 }
