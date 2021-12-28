@@ -3,14 +3,14 @@ import { handleChange } from "../helperFunctions/handleChange";
 import { login } from "./API/auth";
 import { Navigate } from 'react-router-dom';
 
-interface inputFields {
+interface stateFields {
     email: string, 
     password: string,
     authenticated: boolean
 }
 
 const Login = () => {
-    const [state, setState] = useState<inputFields>({
+    const [state, setState] = useState<stateFields>({
         email: "",
         password: "",
         authenticated: false

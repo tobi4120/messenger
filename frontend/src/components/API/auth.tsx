@@ -22,12 +22,30 @@ export const login = async (email: string, password: string): Promise<string | u
         error = err.response.data.non_field_errors[0]
     });
 
-    if (error) {
-        return error
-    }
+    if (error) return error
 
     // Put token in local storage
     if (response) { 
         localStorage.setItem('token', response.data.token)
     }
+}
+
+// Register
+export const register = async (first_name: string, last_name: string, email: string, password: string) => {
+    let error = "";
+    const response = await axios.post('/registerAPI', {
+        first_name: first_name,
+        last_name: last_name,
+        email: email,
+        password: password,
+    }, { headers: headers })
+    .catch((err) => {
+        error = err.response.data.email[0]
+    });
+
+    if (error) return error
+    
+    // Put token in local storage
+    if (response) 
+        localStorage.setItem('token', response.data.token);
 }
