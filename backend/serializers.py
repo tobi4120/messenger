@@ -6,7 +6,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'email', 'first_name', 'last_name', 'profile_pic')
+        fields = ('id', 'email', 'first_name', 'last_name', 'profile_pic', 'convos')
 
 class RegisterSerializer(serializers.ModelSerializer):
 
@@ -39,11 +39,16 @@ class MessageSerializer(serializers.ModelSerializer):
 
 class ConvoSerializer(serializers.ModelSerializer):
     messages = serializers.SerializerMethodField()
+    members = serializers.SerializerMethodField()
 
     class Meta:
         model = Convo
         fields = '__all__'
 
     def get_messages(self, instance):
-        messages = instance.messages.all().order_by('id')
+        messages = instance.messages.all().order_by('sentAt')
         return MessageSerializer(messages, many=True, read_only=True).data
+    
+    def get_members(self, instance):
+        members = instance.members.all().order_by('id')
+        return UserSerializer(members, many=True, read_only=True).data

@@ -79,6 +79,7 @@ class Message(models.Model):
 
 class Convo(models.Model):
     name = models.CharField(max_length=150, blank=True, null=True)
+    members = models.ManyToManyField(User, related_name="convos")
 
     def __str__(self):
         return f"{self.id}"
