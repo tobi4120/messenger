@@ -11,18 +11,11 @@ axios.defaults.xsrfCookieName = 'csrftoken'
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
 
 // Get user data from token
-export const getUserData = async (): Promise<object | string | undefined> => {
-    let error = null;
-
+export const getUserData = async (): Promise<any> => {
     const response = await axios.get("/userAPI", {headers: {
         Authorization: `Token ${localStorage.getItem('token')}`
     }})
-    .catch((err) => {
-        error = err.response.data.detail;
-    });
-
-    if (error) return error
-    if (response) return response
+    return response
 }
 
 // Login

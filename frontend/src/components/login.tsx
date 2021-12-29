@@ -23,13 +23,13 @@ const Login = () => {
     // Check if user is logged in. If so then log them out.
     const checkForToken = async (): Promise<void> => {
         if (localStorage.getItem('token') !== null) {
-            const response = await getUserData();
-            
-            if (response === "Invalid token.") {
+            try {
+                await getUserData();
+            } catch (error) {
                 localStorage.removeItem("token");
-            } else {
-                logout();
+                return;
             }
+            logout();
         }
     }
 
