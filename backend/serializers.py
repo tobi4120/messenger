@@ -52,3 +52,14 @@ class ConvoSerializer(serializers.ModelSerializer):
     def get_members(self, instance):
         members = instance.members.all().order_by('id')
         return UserSerializer(members, many=True, read_only=True).data
+
+class UserSerializerConvos(serializers.ModelSerializer):
+    convos = serializers.SerializerMethodField()
+
+    class Meta:
+        model = User
+        fields = ('id', 'email', 'first_name', 'last_name', 'profile_pic', 'convos')
+
+    def get_convos(self, instance):
+        convos = instance.convos.all().order_by('id')
+        return ConvoSerializer(convos, many=True, read_only=True).data
