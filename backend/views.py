@@ -7,7 +7,7 @@ from .serializers import *
 
 from knox.models import AuthToken
 
-#Register API 
+# Register API 
 class RegisterAPI(generics.GenericAPIView):
     serializer_class = RegisterSerializer
 
@@ -20,7 +20,7 @@ class RegisterAPI(generics.GenericAPIView):
             "token": AuthToken.objects.create(user)[1]
         })
 
-#Login API
+# Login API
 class LoginAPI(generics.GenericAPIView):
     serializer_class = LoginSerializer
 
@@ -33,7 +33,7 @@ class LoginAPI(generics.GenericAPIView):
             "token": AuthToken.objects.create(user)[1]
         })
 
-#Get User API
+# Get User API
 class UserAPI(generics.RetrieveAPIView):
     permission_classes = [
         permissions.IsAuthenticated,
@@ -43,3 +43,12 @@ class UserAPI(generics.RetrieveAPIView):
     def get_object(self):
         return self.request.user
 
+# Message API
+class MessageViewSet(viewsets.ModelViewSet):
+    queryset = Message.objects.all().order_by('id')
+    serializer_class = MessageSerializer
+
+# Convo API
+class ConvoViewSet(viewsets.ModelViewSet):
+    queryset = Convo.objects.all().order_by('id')
+    serializer_class = ConvoSerializer

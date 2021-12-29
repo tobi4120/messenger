@@ -31,3 +31,19 @@ class LoginSerializer(serializers.Serializer):
         if user and user.is_active:
             return user
         raise serializers.ValidationError("Incorrect Credentials")
+
+class MessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Message
+        fields = '__all__'
+
+class ConvoSerializer(serializers.ModelSerializer):
+    messages = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Convo
+        fields = '__all__'
+
+    def get_messages(self, instance):
+        messages = instance.messages.all().order_by('id')
+        return MessageSerializer(messages, many=True, read_only=True).data

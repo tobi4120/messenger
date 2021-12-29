@@ -5,6 +5,8 @@ from knox import views as knox_views
 from .views import RegisterAPI, LoginAPI, UserAPI
 
 router = routers.DefaultRouter()
+router.register(r'messages', views.MessageViewSet)
+router.register(r'convos', views.ConvoViewSet)
 
 urlpatterns = [
     path("api_", include(router.urls)),

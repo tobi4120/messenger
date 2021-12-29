@@ -67,3 +67,18 @@ class User(AbstractBaseUser):
     
     def has_module_perms(self, app_label):
         return True
+
+class Message(models.Model):
+    user = models.ForeignKey("User", on_delete=models.CASCADE)
+    message = models.CharField(max_length=1000)
+    sentAt = models.DateTimeField(auto_now_add=True)
+    convo = models.ForeignKey("Convo", related_name="messages", blank=True, null=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.message}"
+
+class Convo(models.Model):
+    name = models.CharField(max_length=150, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.id}"
