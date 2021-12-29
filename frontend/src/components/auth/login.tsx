@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { handleChange } from "../helperFunctions/handleChange";
-import { login, getUserData, logout } from "./API/auth";
+import { handleChange } from "../../helperFunctions/handleChange";
+import { login, getUserData, logout } from "../API/auth";
 import { Navigate } from 'react-router-dom';
 
 interface stateFields {

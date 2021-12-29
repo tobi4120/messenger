@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Menu from "./menu";
+import Menu from "./menu/menu";
 import Messages from "./messages/messages";
 import { getUserData } from "../API/auth";
 import { Navigate } from 'react-router-dom';
-import Loader from "../loading";
+import Loader from "../other/loading";
+import { user } from "../interfaces";
 
 interface stateFields {
     isLoaded: boolean
@@ -15,7 +16,7 @@ const Home: React.FC = () => {
         isLoaded: false,
         authenticated: false
     });
-    const [user, setUser] = useState<object>();
+    const [user, setUser] = useState<user>();
 
     useEffect(() => {
         checkToken();
@@ -32,7 +33,7 @@ const Home: React.FC = () => {
 
         // Check if token is valid. If not go back to login page.
         try {
-            const response = await getUserData();
+            const response = await getUserData(); // Get user data
 
             if (response) {
                 setUser(response.data);
@@ -46,11 +47,11 @@ const Home: React.FC = () => {
 
     if (!state.isLoaded) return <Loader />
 
-    if (!state.authenticated) return <Navigate to="/login" />
+    if (!state.authenticated || !user) return <Navigate to="/login" />
 
     return (
         <div className="home">
-            <Menu />
+            <Menu user={user} />
             <Messages />
         </div>
     )
