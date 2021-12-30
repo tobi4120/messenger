@@ -16,6 +16,7 @@ export const timeLastSent = (specifiedTime: string): string => {
     // minutes
     let mins = Math.round(difference / 60000)
     if (mins === 0) mins = 1
+    if (mins === 60) mins = 59
 
     if (years >= 1) {
         return years + "y"

@@ -50,13 +50,15 @@ const ConvoItem: React.FC<Props> = (props) => {
                 </div>
 
                 {/* Last message */}
-                <LastMessage 
-                    lastMessage={props.convo.messages[props.convo.messages.length - 1]} 
-                    user={props.user} />
+                <div className="convoItem__right__lastMessage">
+                    <LastMessage 
+                        lastMessage={props.convo.messages[props.convo.messages.length - 1]} 
+                        user={props.user} />
 
-                {/* How long ago the last message was sent */}
-                <div>
-                    <p>{timeLastSent(props.convo.messages[props.convo.messages.length - 1].sentAt)}</p>
+                    {/* How long ago the last message was sent */}
+                    <div className="convoItem__right__lastMessage__lastSent">
+                        <p>{timeLastSent(props.convo.messages[props.convo.messages.length - 1].sentAt)}</p>
+                    </div>
                 </div>
             </div>
         </div>

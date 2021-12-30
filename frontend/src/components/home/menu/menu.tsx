@@ -6,12 +6,10 @@ interface Props {
     user: user
 }
 
-const Menu: React.FC<Props> = (props) => {
-    //console.log(props.user.convos) // REMOVE LATER
-    
+const Menu: React.FC<Props> = (props) => {    
     return (
         <div className="menu">
-            <h1>Menu</h1>
+            <h1>Chats</h1>
 
             {/* Convo Items */}
             {props.user.convos.map(convo => {

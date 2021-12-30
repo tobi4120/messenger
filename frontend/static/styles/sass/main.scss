@@ -5,6 +5,8 @@
 @import "./base/typography";
 
 @import "./components/home/home";
-@import "./components/home/menu";
+
+@import "./components/home/menu/menu";
+@import "./components/home/menu/convoItem";
 
 @import "./base/_media_queries";
