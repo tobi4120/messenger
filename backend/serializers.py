@@ -6,7 +6,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'email', 'first_name', 'last_name', 'profile_pic', 'convos')
+        fields = ('id', 'email', 'first_name', 'last_name', 'profile_pic')
 
 class RegisterSerializer(serializers.ModelSerializer):
 
@@ -33,6 +33,8 @@ class LoginSerializer(serializers.Serializer):
         raise serializers.ValidationError("Incorrect Credentials")
 
 class MessageSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+
     class Meta:
         model = Message
         fields = '__all__'
