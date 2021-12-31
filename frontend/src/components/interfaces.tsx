@@ -9,7 +9,7 @@ export interface user {
 
 export interface convo {
     id: number
-    name: string | null
+    name?: string
     members: user[]
     messages: message[]
 }

@@ -82,7 +82,7 @@ const Home: React.FC = (props) => {
         <div className="home">
             <Menu user={user} />
             <Routes>
-                <Route path={`/convo/${state.idOfMostRecentConvo}`} element={<Messages />} />
+                <Route path="convo/:convoId" element={<Messages user={user} />} />
             </Routes>
         </div>
     )
