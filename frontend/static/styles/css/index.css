@@ -72,7 +72,7 @@ p {
   height: 100vh; }
 
 .menu {
-  flex: 0.25;
+  min-width: 300px;
   border-right: 1px solid black; }
 
 .convoItem {
@@ -93,6 +93,23 @@ p {
       display: flex; }
       .convoItem__right__lastMessage__messageAndUser {
         flex: 1; }
+
+.messages {
+  width: 100%; }
+  .messages__messageAndTimeSent:not(:last-child) {
+    margin-bottom: 15px; }
+  .messages__timeSent {
+    text-align: center; }
+  .messages .currentUser {
+    display: flex;
+    flex-direction: row-reverse; }
+  .messages__message {
+    display: flex; }
+    .messages__message__left, .messages__message__right {
+      height: 30px; }
+      .messages__message__left img, .messages__message__right img {
+        max-width: 100%;
+        max-height: 100%; }
 
 @media (max-width: 770px) {
   .home {

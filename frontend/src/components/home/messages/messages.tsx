@@ -6,6 +6,8 @@ import Loader from "../../other/loading";
 import { Navigate } from "react-router-dom";
 import Header from "../convoItemComponents/header";
 import Message from "./message";
+import TimeSent from "./timeSent";
+import NewMessage from "./newMessage";
 
 interface props {
     user: user
@@ -53,8 +55,21 @@ const Messages: React.FC<props> = (props) => {
 
                 if (index !== 0 && state.convo) prevMessage = state.convo.messages[index - 1]
 
-                return <Message key={message.id} message={message} prevMessage={prevMessage} />
+                return  (
+                    <div className="messages__messageAndTimeSent">
+                        <TimeSent 
+                            timeMsgSent={message.sentAt}
+                            timePrevMsgSent={prevMessage && prevMessage.sentAt} />
+                        <Message 
+                            key={message.id} 
+                            user={props.user}
+                            message={message} /> 
+                    </div>
+                )
             })}
+
+            {/* Type new message */}
+            <NewMessage />
             
         </div>
     )

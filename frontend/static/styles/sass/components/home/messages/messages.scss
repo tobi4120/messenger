@@ -1,0 +1,30 @@
+.messages {
+    width: 100%;
+
+    &__messageAndTimeSent:not(:last-child) {
+        margin-bottom: 15px;
+    }
+
+    &__timeSent {
+        text-align: center;
+    }
+
+    // Align current user's messages to the right
+    .currentUser {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    &__message {
+        display: flex;
+
+        &__left, &__right {
+            height: 30px;
+
+            img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+        }
+    }
+}

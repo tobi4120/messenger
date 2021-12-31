@@ -47,7 +47,7 @@ const TimeSent: React.FC<props> = (props) => {
 
     if (greaterThanOneHour) 
         return (
-            <div>
+            <div className="messages__timeSent">
                 {date}
             </div>
         )
