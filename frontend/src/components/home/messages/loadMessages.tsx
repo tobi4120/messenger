@@ -17,9 +17,20 @@ const LoadMessages: React.FC<{user: user}> = (props) => {
 
     const getConvoFromAPI = async () => {
         if (!convoId) return
+        
+        try {
+            const response = await getConvo(convoId);
 
-        const response = await getConvo(convoId);
-        setConvo(response);
+            // Check to see if user is a member of the convo
+            let userIsInConvo = false;
+
+            response.members.forEach(member => {
+                if (member.id === props.user.id) userIsInConvo = true;
+            });
+            if (userIsInConvo) setConvo(response);
+            
+        } catch {
+        }
         setIsLoaded(true);
     }
 

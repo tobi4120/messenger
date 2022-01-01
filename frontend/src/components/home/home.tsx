@@ -84,6 +84,10 @@ const Home: React.FC = (props) => {
             <Routes>
                 <Route path="convo/:convoId" element={<LoadMessages user={user} />} />
             </Routes>
+            {urlIsNot_convoID && 
+            <div>
+                Select a chat or start a new conversation
+            </div> }
         </div>
     )
 };
