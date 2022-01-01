@@ -6,7 +6,7 @@ import Loader from "../../other/loading";
 import { Navigate } from "react-router-dom";
 import Messages from "./messages";
 
-const LoadMessages: React.FC<{user: user}> = (props) => {
+const LoadMessages: React.FC<{user: user, setUser: any}> = (props) => {
     const { convoId } = useParams();
     const [ isLoaded, setIsLoaded ] = useState<boolean>(false);
     const [ convo, setConvo ] = useState<convo | null>();
@@ -38,6 +38,9 @@ const LoadMessages: React.FC<{user: user}> = (props) => {
 
     if (!convo) return <Navigate to="/" />
 
-    return (<Messages user={props.user} convo={convo} />)
+    return (<Messages 
+                user={props.user} 
+                convo={convo}
+                setUser={props.setUser} />)
 }
 export default LoadMessages

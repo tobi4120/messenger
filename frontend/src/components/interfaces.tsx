@@ -7,10 +7,18 @@ export interface user {
     profile_pic: string | null
 }
 
+export interface userNoConvo {
+    id: number
+    email: string
+    first_name: string
+    last_name: string
+    profile_pic: string | null
+}
+
 export interface convo {
     id: number
     name?: string
-    members: user[]
+    members: userNoConvo[]
     messages: message[]
 }
 
@@ -19,5 +27,5 @@ export interface message {
     id: number
     message: string
     sentAt: string
-    user: user
+    user: userNoConvo
 }

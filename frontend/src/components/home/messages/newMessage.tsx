@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { convo } from "../../interfaces";
+import React, { useReducer, useState } from "react";
+import { convo, user } from "../../interfaces";
 import { handleChange } from "../../../helperFunctions/handleChange";
 import { saveMessageAPI } from "../../API/messagesAPI";
 
@@ -8,10 +8,11 @@ interface state {
 }
 
 interface props {
-    currentUserID: number
+    user: user
     convoID: number
-    updateMessagesState: any;
-    oldConvo: convo;
+    updateMessagesState: any
+    oldConvo: convo
+    setUser: any
 }
 
 const NewMessage: React.FC<props> = (props) => {
@@ -23,9 +24,21 @@ const NewMessage: React.FC<props> = (props) => {
         // Check if message is empty
         if (state.newMessage === "") return
 
-        // Call API and update state
-        const response = await saveMessageAPI(state.newMessage, props.currentUserID, props.convoID);
+        // Call API
+        const response = await saveMessageAPI(state.newMessage, props.user.id, props.convoID);
+
+        // Update messages state (so the message show automatically on the screen)
         props.updateMessagesState(({ ...props.oldConvo, messages: [...props.oldConvo.messages, response] }));
+
+        // Get the correct convo index from the user's convos
+        const convoIndex = props.user.convos.findIndex(x => x.id === props.convoID) 
+
+        // Append new message to user's convo messages
+        const newConvos = props.user.convos
+        newConvos[convoIndex].messages.push(response)
+
+        // Update user state (so the menu updates) 
+        props.setUser({ ...props.user, convos: newConvos })
 
         // Clear textbox
         setState({ ...state, newMessage: "" });

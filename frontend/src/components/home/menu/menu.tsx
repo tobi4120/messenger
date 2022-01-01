@@ -11,7 +11,7 @@ const Menu: React.FC<Props> = (props) => {
         <div className="menu">
             <h1>Chats</h1>
 
-            {/* Convo Items */}
+            {/* Convos */}
             {props.user.convos.map(convo => {
                 return (
                     <ConvoItem key={convo.id} user={props.user} convo={convo} />

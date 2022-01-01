@@ -82,7 +82,7 @@ const Home: React.FC = (props) => {
         <div className="home">
             <Menu user={user} />
             <Routes>
-                <Route path="convo/:convoId" element={<LoadMessages user={user} />} />
+                <Route path="convo/:convoId" element={<LoadMessages user={user} setUser={setUser} />} />
             </Routes>
             {urlIsNot_convoID && 
             <div>
