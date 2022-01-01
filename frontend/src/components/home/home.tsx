@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Menu from "./menu/menu";
-import Messages from "./messages/messages";
+import LoadMessages from "./messages/loadMessages";
 import { getUserData } from "../API/auth";
 import { Navigate } from 'react-router-dom';
 import Loader from "../other/loading";
@@ -82,7 +82,7 @@ const Home: React.FC = (props) => {
         <div className="home">
             <Menu user={user} />
             <Routes>
-                <Route path="convo/:convoId" element={<Messages user={user} />} />
+                <Route path="convo/:convoId" element={<LoadMessages user={user} />} />
             </Routes>
         </div>
     )

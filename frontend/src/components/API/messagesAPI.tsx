@@ -17,3 +17,14 @@ export const getConvo = async (convoId: string): Promise<convo> => {
     
     return response.data
 }
+
+// Save message
+export const saveMessageAPI = async (message: string, userID: number, convoID: number) => {
+    const response = await axios.post('/api_messages/', {
+        message: message,
+        user: userID,
+        convo: convoID
+    }, { headers: headers })
+
+    return response.data
+}
