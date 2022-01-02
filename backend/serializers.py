@@ -33,11 +33,15 @@ class LoginSerializer(serializers.Serializer):
         raise serializers.ValidationError("Incorrect Credentials")
 
 class MessageSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)
 
     class Meta:
         model = Message
         fields = '__all__'
+
+    def to_representation(self, instance):
+        response = super().to_representation(instance)
+        response['user'] = UserSerializer(instance.user).data
+        return response
 
 class ConvoSerializer(serializers.ModelSerializer):
     messages = serializers.SerializerMethodField()
@@ -63,5 +67,5 @@ class UserSerializerConvos(serializers.ModelSerializer):
         fields = ('id', 'email', 'first_name', 'last_name', 'profile_pic', 'convos')
 
     def get_convos(self, instance):
-        convos = instance.convos.all().order_by('id')
+        convos = instance.convos.all().order_by('-timeOfLastMsg')
         return ConvoSerializer(convos, many=True, read_only=True).data

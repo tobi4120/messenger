@@ -70,4 +70,5 @@ class AccountAdmin(UserAdmin):
 
 admin.site.register(User, AccountAdmin)
 admin.site.register(Message)
+admin.site.register(Convo)
 admin.site.unregister(Group)

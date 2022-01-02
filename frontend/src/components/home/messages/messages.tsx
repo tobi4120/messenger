@@ -14,6 +14,10 @@ interface props {
 const Messages: React.FC<props> = (props) => {
     const [ convo, setConvo ] = useState<convo>(props.convo);
 
+    useEffect(() => {
+        setConvo(props.convo)
+    }, [props.convo])
+
     return (
         <div className="messages">
             

@@ -13,7 +13,7 @@ const LoadMessages: React.FC<{user: user, setUser: any}> = (props) => {
 
     useEffect(() => {
         getConvoFromAPI();
-    }, [])
+    }, [convoId])
 
     const getConvoFromAPI = async () => {
         if (!convoId) return

@@ -50,5 +50,5 @@ class MessageViewSet(viewsets.ModelViewSet):
 
 # Convo API
 class ConvoViewSet(viewsets.ModelViewSet):
-    queryset = Convo.objects.all().order_by('id')
+    queryset = Convo.objects.all()
     serializer_class = ConvoSerializer

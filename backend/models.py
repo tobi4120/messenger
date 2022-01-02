@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.utils import timezone
 
 class MyAccountManager(BaseUserManager):
 
@@ -80,6 +81,7 @@ class Message(models.Model):
 class Convo(models.Model):
     name = models.CharField(max_length=150, blank=True, null=True)
     members = models.ManyToManyField(User, related_name="convos")
+    timeOfLastMsg = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return f"{self.id}"
