@@ -37,6 +37,10 @@ const NewMessage: React.FC<props> = (props) => {
         const newConvos = props.user.convos
         newConvos[convoIndex].messages.push(response)
 
+        // Move the convo to the front of all of the convos (so that it will show first in the menu)
+        const convo = newConvos.splice(convoIndex, 1)
+        newConvos.unshift(convo[0]);
+
         // Update user state (so the menu updates) 
         props.setUser({ ...props.user, convos: newConvos })
 

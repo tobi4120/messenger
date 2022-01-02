@@ -20,6 +20,7 @@ export interface convo {
     name?: string
     members: userNoConvo[]
     messages: message[]
+    timeOfLastMsg: string
 }
 
 export interface message {

@@ -26,5 +26,10 @@ export const saveMessageAPI = async (message: string, userID: number, convoID: n
         convo: convoID
     }, { headers: headers })
 
+    // Update convo's timeOfLastMsg field
+    const otherResponse = await axios.put(`/api_convos/${convoID}/`, {
+        timeOfLastMsg: new Date().toISOString()
+    }, { headers: headers })
+
     return response.data
 }
