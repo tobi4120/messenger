@@ -12,6 +12,7 @@ const LoadMessages: React.FC<{user: user, setUser: any}> = (props) => {
     const [ convo, setConvo ] = useState<convo | null>();
 
     useEffect(() => {
+        setIsLoaded(false);
         getConvoFromAPI();
     }, [convoId])
 
