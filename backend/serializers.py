@@ -4,9 +4,11 @@ from django.contrib.auth import authenticate
 
 class UserSerializer(serializers.ModelSerializer):
 
+    profile_pic = serializers.ImageField(use_url=False, allow_null=True)
+
     class Meta:
         model = User
-        fields = ('id', 'email', 'first_name', 'last_name', 'profile_pic')
+        fields = ('id', 'email', 'first_name', 'last_name', 'profile_pic', 'convos')
 
 class RegisterSerializer(serializers.ModelSerializer):
 

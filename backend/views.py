@@ -52,3 +52,8 @@ class MessageViewSet(viewsets.ModelViewSet):
 class ConvoViewSet(viewsets.ModelViewSet):
     queryset = Convo.objects.all()
     serializer_class = ConvoSerializer
+
+# Show all users
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
