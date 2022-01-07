@@ -52,7 +52,7 @@ const Messages: React.FC<props> = (props) => {
                 user={props.user}
                 updateMessagesState={setConvo}
                 oldConvo={convo}
-                setUser={props.setUser}  /> }
+                setUser={props.setUser} /> }
         </div>
     )
 };

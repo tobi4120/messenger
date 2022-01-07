@@ -16,7 +16,8 @@ a {
 
 button {
   background-color: rgba(0, 0, 0, 0);
-  border: none; }
+  border: none;
+  cursor: pointer; }
 
 p {
   display: inline; }
@@ -74,6 +75,10 @@ p {
 .menu {
   min-width: 300px;
   border-right: 1px solid black; }
+  .menu__header {
+    display: flex; }
+    .menu__header__heading {
+      flex: 1; }
 
 .convoItem {
   display: flex;
@@ -95,7 +100,8 @@ p {
         flex: 1; }
 
 .messages {
-  width: 100%; }
+  width: 100%;
+  overflow: scroll; }
   .messages__messageAndTimeSent:not(:last-child) {
     margin-bottom: 15px; }
   .messages__timeSent {

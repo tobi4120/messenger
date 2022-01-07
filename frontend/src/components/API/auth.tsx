@@ -72,3 +72,9 @@ export const logout = async ():Promise<void> => {
     // Remove token from local storage
     localStorage.removeItem('token');
 }
+
+// Get all users
+export const getAllUsers = async () => {
+    const response = await axios.get('/api_users');
+    return response.data;
+}

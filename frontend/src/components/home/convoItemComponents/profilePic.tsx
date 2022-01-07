@@ -8,7 +8,7 @@ const ProfilePic: React.FC<Props> = (props) => {
     const [staticLocation, setStaticLocation] = useState<string>("../../../../");
 
     return (
-        <img src={props.imageLocation ? (staticLocation + props.imageLocation.substring(9, props.imageLocation.length)) : 
+        <img src={props.imageLocation ? (staticLocation + props.imageLocation.substring(12, props.imageLocation.length)) : 
             (staticLocation + "static/images/genericProfile.png")} />
     )
 }

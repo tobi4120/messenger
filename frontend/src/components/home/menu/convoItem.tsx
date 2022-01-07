@@ -1,27 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import { user, convo } from "../../interfaces";
 import ProfilePic from "../convoItemComponents/profilePic";
 import Header from "../convoItemComponents/header";
 import LastMessage from "../convoItemComponents/lastMessage";
 import { timeLastSent } from "../../../helperFunctions/timeLastSent";
-import { useLocation, Navigate, useNavigate  } from 'react-router-dom';
+import { useNavigate  } from 'react-router-dom';
 
 interface Props {
     user: user
     convo: convo
+    state: any
+    setState: any
 }
 
 const ConvoItem: React.FC<Props> = (props) => {
-    const [clicked, setClicked] = useState(false);
     const navigate = useNavigate();
 
-    if (clicked) { 
-        setClicked(false);
-        navigate(`/convo/${props.convo.id}`)
-    }
-
     return (
-        <div className="convoItem" onClick={() => setClicked(true)}>
+        <div className="convoItem" onClick={() => { 
+                props.setState({ ...props.state, newChat: false })
+                navigate(`/convo/${props.convo.id}`) 
+            }}>
 
             {/* Left half */}
             <div className="convoItem__left">

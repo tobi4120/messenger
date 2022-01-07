@@ -1,4 +1,12 @@
 .menu {
     min-width: 300px;
     border-right: 1px solid black;
+
+    &__header {
+        display: flex;
+
+        &__heading {
+            flex: 1;
+        }
+    }
 }

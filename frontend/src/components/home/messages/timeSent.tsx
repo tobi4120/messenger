@@ -10,8 +10,6 @@ const TimeSent: React.FC<props> = (props) => {
     const [date, setDate] = useState<string>();
 
     useEffect(() => {
-        //console.log("timeMsgSent: " + props.timeMsgSent + '\n' + "timePrevMsgSent: " + props.timePrevMsgSent)
-
         if (props.timePrevMsgSent) {
             const difference = Date.parse(props.timeMsgSent) - Date.parse(props.timePrevMsgSent);
 

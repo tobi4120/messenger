@@ -12,6 +12,7 @@ interface stateFields {
     authenticated: boolean
     userHasConvos: boolean
     idOfMostRecentConvo: number | null
+    newChat: boolean
 }
 
 const Home: React.FC = (props) => {
@@ -20,7 +21,10 @@ const Home: React.FC = (props) => {
         authenticated: false,
         userHasConvos: false,
         idOfMostRecentConvo: null,
+        newChat: false
     });
+
+    // User state
     const [user, setUser] = useState<user>();
     let alsoUser = {}
 
@@ -65,7 +69,6 @@ const Home: React.FC = (props) => {
                 idOfMostRecentConvo: idOfMostRecentConvo, 
                 authenticated: true, 
                 isLoaded: true });
-            
         } catch {
             setState({ ...state, isLoaded: true });
         };
@@ -80,14 +83,25 @@ const Home: React.FC = (props) => {
 
     return (
         <div className="home">
-            <Menu user={user} />
+            <Menu 
+                user={user}
+                state={state}
+                setState={setState} />
             <Routes>
-                <Route path="convo/:convoId" element={<LoadMessages user={user} setUser={setUser} />} />
+                <Route path="convo/:convoId" 
+                       element={ <LoadMessages 
+                                    user={user} 
+                                    setUser={setUser}
+                                    state={state}
+                                    setState={setState} />} />
             </Routes>
-            {urlIsNot_convoID && 
-            <div>
-                Select a chat or start a new conversation
-            </div> }
+
+            {/* No chats */}
+            { urlIsNot_convoID && 
+                <div>
+                    Select a chat or start a new conversation
+                </div> 
+            }
         </div>
     )
 };

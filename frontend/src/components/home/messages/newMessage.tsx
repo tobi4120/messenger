@@ -1,7 +1,8 @@
-import React, { useReducer, useState } from "react";
+import React, { useState } from "react";
 import { convo, user } from "../../interfaces";
 import { handleChange } from "../../../helperFunctions/handleChange";
 import { saveMessageAPI } from "../../API/messagesAPI";
+import { updateMenu } from "../../../helperFunctions/menuFunctions";
 
 interface state {
     newMessage: string
@@ -30,19 +31,8 @@ const NewMessage: React.FC<props> = (props) => {
         // Update messages state (so the message show automatically on the screen)
         props.updateMessagesState(({ ...props.oldConvo, messages: [...props.oldConvo.messages, response] }));
 
-        // Get the correct convo index from the user's convos
-        const convoIndex = props.user.convos.findIndex(x => x.id === props.convoID) 
-
-        // Append new message to user's convo messages
-        const newConvos = props.user.convos
-        newConvos[convoIndex].messages.push(response)
-
-        // Move the convo to the front of all of the convos (so that it will show first in the menu)
-        const convo = newConvos.splice(convoIndex, 1)
-        newConvos.unshift(convo[0]);
-
-        // Update user state (so the menu updates) 
-        props.setUser({ ...props.user, convos: newConvos })
+        // Update menu to account for new message
+        updateMenu(props.user, props.convoID, response, props.setUser);
 
         // Clear textbox
         setState({ ...state, newMessage: "" });

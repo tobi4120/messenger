@@ -1,5 +1,6 @@
 .messages {
     width: 100%;
+    overflow: scroll;
 
     &__messageAndTimeSent:not(:last-child) {
         margin-bottom: 15px;

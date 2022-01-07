@@ -5,8 +5,16 @@ import { convo, user } from "../../interfaces";
 import Loader from "../../other/loading";
 import { Navigate } from "react-router-dom";
 import Messages from "./messages";
+import NewConvo from "./newConvo/newConvo";
 
-const LoadMessages: React.FC<{user: user, setUser: any}> = (props) => {
+interface props {
+    user: user, 
+    setUser: any,
+    state: any,
+    setState: any
+}
+
+const LoadMessages: React.FC<props> = (props) => {
     const { convoId } = useParams();
     const [ isLoaded, setIsLoaded ] = useState<boolean>(false);
     const [ convo, setConvo ] = useState<convo | null>();
@@ -17,7 +25,10 @@ const LoadMessages: React.FC<{user: user, setUser: any}> = (props) => {
     }, [convoId])
 
     const getConvoFromAPI = async () => {
-        if (!convoId) return
+        if (!convoId || convoId === "newChat") {
+            setIsLoaded(true);
+            return
+        }
         
         try {
             const response = await getConvo(convoId);
@@ -36,6 +47,15 @@ const LoadMessages: React.FC<{user: user, setUser: any}> = (props) => {
     }
 
     if (!isLoaded) return <Loader />
+
+    {/* New chat */}
+    if (convoId === "newChat") 
+        return <NewConvo 
+                    currentUser={props.user} 
+                    setUser={props.setUser} 
+                    state={props.state}
+                    setState={props.setState}
+                />
 
     if (!convo) return <Navigate to="/" />
 
