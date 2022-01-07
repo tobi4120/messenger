@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import { getConvo } from "../../API/messagesAPI";
-import { convo, user } from "../../interfaces";
+import { user } from "../../interfaces";
 import Loader from "../../other/loading";
 import { Navigate } from "react-router-dom";
 import Messages from "./messages";
@@ -17,7 +17,8 @@ interface props {
 const LoadMessages: React.FC<props> = (props) => {
     const { convoId } = useParams();
     const [ isLoaded, setIsLoaded ] = useState<boolean>(false);
-    const [ convo, setConvo ] = useState<convo | null>();
+    const [ convo, setConvo ] = useState<any>();
+    const [ userInConvo, setUserInConvo ] = useState<boolean>(false);
 
     useEffect(() => {
         setIsLoaded(false);
@@ -39,8 +40,8 @@ const LoadMessages: React.FC<props> = (props) => {
             response.members.forEach(member => {
                 if (member.id === props.user.id) userIsInConvo = true;
             });
-            if (userIsInConvo) setConvo(response);
-            
+            if (userIsInConvo) setUserInConvo(true);
+            setConvo({ ...response, members: response.members });
         } catch {
         }
         setIsLoaded(true);
@@ -48,7 +49,7 @@ const LoadMessages: React.FC<props> = (props) => {
 
     if (!isLoaded) return <Loader />
 
-    {/* New chat */}
+    // New chat
     if (convoId === "newChat") 
         return <NewConvo 
                     currentUser={props.user} 
@@ -56,8 +57,14 @@ const LoadMessages: React.FC<props> = (props) => {
                     state={props.state}
                     setState={props.setState}
                 />
+    
+    if (!userInConvo) return <Navigate to="/" />
 
-    if (!convo) return <Navigate to="/" />
+    if (!convo) return (
+        <div>
+            There was an error loading this convo
+        </div>
+    ) 
 
     return (<Messages 
                 user={props.user} 

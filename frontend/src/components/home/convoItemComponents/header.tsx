@@ -19,7 +19,7 @@ const Header: React.FC<Props> = (props) => {
         )
 
     // Else render out all the names of the members in the chat
-    if (props.convo.members.length = 2) {
+    if (props.convo.members.length === 2) {
 
         // Only render the name that isn't the current user
         if (props.convo.members[0].email === props.user.email) {
@@ -55,6 +55,5 @@ const Header: React.FC<Props> = (props) => {
     
     if (props.headerType === "h1") return (<h1>{membersString}</h1>)
     return (<h3>{membersString}</h3>)
-
 }
 export default Header;
