@@ -40,13 +40,14 @@ const NewConvo: React.FC<props> = (props) => {
     }
 
     const addUserToInput = (user: user) => {
-        // Don't add the user if it's the current user (i.e a user cannot msg themself)
-        if (user.id !== props.currentUser.id && (!usersInConvo.includes(user)))
+        // Don't add the user if it's the current user (i.e a user cannot msg themself) or if the user is already on the convo
+        if (user.id !== props.currentUser.id && (!usersInConvo.includes(user))) {
             // Add user to the list of users that are to be on the new convo
             setUsersInConvo([ ...usersInConvo, user]);
 
             // Add user to convoObject
             setConvoObject({ ...convoObject, members: [ ...convoObject.members, user ]});
+        }
 
         // Set input to blank
         setInputValue("");
