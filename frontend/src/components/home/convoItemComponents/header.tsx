@@ -45,12 +45,11 @@ const Header: React.FC<Props> = (props) => {
     // Multiple names render
     let seperator = ", ";
     props.convo.members.forEach((member, index) => {
-        if (index === 0) seperator = "";
+        if (index === props.convo.members.length - 1) seperator = "";
 
         // Only render the names that aren't the current user
         if (member.email !== props.user.email)
-            membersString += seperator + member.first_name;
-        
+            membersString += member.first_name + " " + member.last_name + seperator;
     })
     
     if (props.headerType === "h1") return (<h1>{membersString}</h1>)

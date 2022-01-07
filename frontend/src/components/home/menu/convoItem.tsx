@@ -32,10 +32,7 @@ const ConvoItem: React.FC<Props> = (props) => {
                     {props.convo.members.length > 2 ? 
                         <div className="convoItem__left__memberImages__multiple">
                             {props.convo.members.map(member => {
-                                let count = 0
-
-                                if (member.email !== props.user.email || count !== 2) {
-                                    count++;
+                                if (member.email !== props.user.email) {
                                     return <ProfilePic imageLocation={member.profile_pic} /> 
                                 }
                             })}
