@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'frontend',
     'knox',
     'corsheaders',
-    'rest_framework'
+    'rest_framework',
+    'channels'
 ]
 
 MIDDLEWARE = [
@@ -134,6 +135,8 @@ STATIC_DIRS = {
 
 AUTH_USER_MODEL = 'backend.User'
 
+DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.AllowAny',
@@ -154,4 +157,12 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 REST_KNOX = {
   'TOKEN_TTL': None
+}
+
+ASGI_APPLICATION = 'msg_app.routing.application'
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
 }
