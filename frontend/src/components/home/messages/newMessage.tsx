@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { convo, user } from "../../interfaces";
 import { handleChange } from "../../../helperFunctions/handleChange";
 import { saveMessageAPI } from "../../API/messagesAPI";
@@ -21,6 +21,26 @@ const NewMessage: React.FC<props> = (props) => {
         newMessage: ""
     });
 
+    // Web socket
+    const roomName = JSON.parse(props.convoID.toString());
+    const chatSocket = new WebSocket(
+        'ws://' +
+        window.location.host +
+        '/ws/convo/' +
+        roomName +
+        '/'
+    );
+
+    useEffect(() => { 
+        // Web socket -- on message
+        chatSocket.onmessage = (e) => {
+            const data = JSON.parse(e.data);
+
+            // Update state
+            updateState(data)
+        }
+    }, [props.oldConvo])
+
     const saveMessage = async () => {
         // Check if message is empty
         if (state.newMessage === "") return
@@ -28,14 +48,19 @@ const NewMessage: React.FC<props> = (props) => {
         // Call API
         const response = await saveMessageAPI(state.newMessage, props.user.id, props.convoID);
 
+        // Send message to websocket
+        chatSocket.send(JSON.stringify(response));
+
+        // Clear textbox
+        setState({ ...state, newMessage: "" });
+    }
+
+    const updateState = (response: any) => {
         // Update messages state (so the message show automatically on the screen)
         props.updateMessagesState(({ ...props.oldConvo, messages: [...props.oldConvo.messages, response] }));
 
         // Update menu to account for new message
         updateMenu(props.user, props.convoID, response, props.setUser);
-
-        // Clear textbox
-        setState({ ...state, newMessage: "" });
     }
 
     return (
