@@ -6,6 +6,7 @@ import { getUserData } from "../API/auth";
 import { Navigate } from 'react-router-dom';
 import Loader from "../other/loading";
 import { user } from "../interfaces";
+import { updateMenu } from "../../helperFunctions/menuFunctions";
 
 interface stateFields {
     isLoaded: boolean
@@ -34,9 +35,32 @@ const Home: React.FC = (props) => {
 
     if (location.pathname !== "/" && location.pathname !== "/convo") urlIsNot_convoID = false
 
+    // Web socket
+    const homeSocket = new WebSocket(
+        'ws://' +
+        window.location.host +
+        '/ws/'
+    );
+
     useEffect(() => {
-        checkToken();
-    }, []);
+        appStart();
+    }, [state.authenticated]);
+
+    const appStart = async () => {
+        // Verify user
+        await checkToken();
+       
+        // Web socket -- on message
+        homeSocket.onmessage = (e) => {
+            const msg = JSON.parse(e.data);
+            console.log(msg);
+
+            // Update state 
+            if (user) {
+                updateMenu(user, msg.convo, msg, setUser)
+            }
+        }
+    }
 
     // Check if there is a valid token in local storage
     const checkToken = async () => {
@@ -93,7 +117,8 @@ const Home: React.FC = (props) => {
                                     user={user} 
                                     setUser={setUser}
                                     state={state}
-                                    setState={setState} />} />
+                                    setState={setState}
+                                    homeSocket={homeSocket} />} />
             </Routes>
 
             {/* No chats */}

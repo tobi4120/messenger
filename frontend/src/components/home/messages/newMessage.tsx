@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { convo, user } from "../../interfaces";
 import { handleChange } from "../../../helperFunctions/handleChange";
 import { saveMessageAPI } from "../../API/messagesAPI";
-import { updateMenu } from "../../../helperFunctions/menuFunctions";
 
 interface state {
     newMessage: string
@@ -13,7 +12,7 @@ interface props {
     convoID: number
     updateMessagesState: any
     oldConvo: convo
-    setUser: any
+    homeSocket: any
 }
 
 const NewMessage: React.FC<props> = (props) => {
@@ -34,12 +33,12 @@ const NewMessage: React.FC<props> = (props) => {
     useEffect(() => { 
         // Web socket -- on message
         chatSocket.onmessage = (e) => {
-            const data = JSON.parse(e.data);
+            const msg = JSON.parse(e.data);
 
-            // Update state
-            updateState(data)
+            // Update messages state (so the message show automatically on the screen)
+            props.updateMessagesState(({ ...props.oldConvo, messages: [...props.oldConvo.messages, msg] }));
         }
-    }, [props.oldConvo])
+    }, [])
 
     const saveMessage = async () => {
         // Check if message is empty
@@ -48,19 +47,12 @@ const NewMessage: React.FC<props> = (props) => {
         // Call API
         const response = await saveMessageAPI(state.newMessage, props.user.id, props.convoID);
 
-        // Send message to websocket
+        // Send message to websockets
+        props.homeSocket.send(JSON.stringify(response));
         chatSocket.send(JSON.stringify(response));
 
         // Clear textbox
         setState({ ...state, newMessage: "" });
-    }
-
-    const updateState = (response: any) => {
-        // Update messages state (so the message show automatically on the screen)
-        props.updateMessagesState(({ ...props.oldConvo, messages: [...props.oldConvo.messages, response] }));
-
-        // Update menu to account for new message
-        updateMenu(props.user, props.convoID, response, props.setUser);
     }
 
     return (

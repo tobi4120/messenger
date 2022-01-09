@@ -8,7 +8,7 @@ import NewMessage from "./newMessage";
 interface props {
     user: user
     convo: convo
-    setUser: any
+    homeSocket: any
 }
 
 const Messages: React.FC<props> = (props) => {
@@ -52,7 +52,7 @@ const Messages: React.FC<props> = (props) => {
                 user={props.user}
                 updateMessagesState={setConvo}
                 oldConvo={convo}
-                setUser={props.setUser} /> }
+                homeSocket={props.homeSocket} /> }
         </div>
     )
 };

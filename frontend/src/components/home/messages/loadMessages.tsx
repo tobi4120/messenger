@@ -12,6 +12,7 @@ interface props {
     setUser: any,
     state: any,
     setState: any
+    homeSocket: any
 }
 
 const LoadMessages: React.FC<props> = (props) => {
@@ -69,6 +70,6 @@ const LoadMessages: React.FC<props> = (props) => {
     return (<Messages 
                 user={props.user} 
                 convo={convo}
-                setUser={props.setUser} />)
+                homeSocket={props.homeSocket} />)
 }
 export default LoadMessages
