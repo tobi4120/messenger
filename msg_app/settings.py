@@ -171,10 +171,10 @@ ASGI_APPLICATION = 'msg_app.routing.application'
 #     }
 # }
 
-# Production
+#Production
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "BACKEND": "channels_redis.msg_app.RedisChannelLayer",
         "CONFIG": {
             "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
         },
