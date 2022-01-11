@@ -40,7 +40,7 @@ const Home: React.FC = (props) => {
 
     // Web socket
     const homeSocket = new WebSocket(
-        'wss://' +
+        'ws://' +
         window.location.host +
         '/ws/'
     );

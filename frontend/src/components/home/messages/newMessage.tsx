@@ -26,7 +26,7 @@ const NewMessage: React.FC<props> = (props) => {
     // Web socket
     const roomName = JSON.parse(props.convoID.toString());
     const chatSocket = new WebSocket(
-        'wss://' +
+        'ws://' +
         window.location.host +
         '/ws/convo/' +
         roomName +
