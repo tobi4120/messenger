@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"webpack --mode development --watch\" \"npm run watch:sass\" \"python3 ../manage.py runserver\"",
+    "dev": "concurrently \"npm run startApp\" \"npm run watch:sass\" \"python3 manage.py runserver\"",
     "build": "webpack --mode production",
-    "watch:sass": "node-sass static/styles/sass/main.scss static/styles/css/index.css -w"
+    "startApp": "webpack --mode development --watch ./frontend/src/index.js -o ./frontend/static/frontend/",
+    "watch:sass": "node-sass frontend/static/styles/sass/main.scss frontend/static/styles/css/index.css -w"
   },
   "keywords": [],
   "author": "",
