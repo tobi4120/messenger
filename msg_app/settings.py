@@ -26,7 +26,7 @@ SECRET_KEY = '=_&bfzn1@xyf%$#dpsag11!i3m*qyd-3k628l1pku0++evmj^5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'msg-app-clone.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', 'msg-app-clone.herokuapp.com']
 
 
 # Application definition
