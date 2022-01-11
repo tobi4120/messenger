@@ -22,52 +22,6 @@ button {
 p {
   display: inline; }
 
-@font-face {
-  src: url(../../fonts/circular-black.woff2);
-  font-family: circular-black; }
-
-@font-face {
-  src: url(../../fonts/circular-bold.woff2);
-  font-family: circular-bold; }
-
-@font-face {
-  src: url(../../fonts/circular-medium.woff2);
-  font-family: circular-medium; }
-
-@font-face {
-  src: url(../../fonts/circular-book.woff2);
-  font-family: circular-book; }
-
-@font-face {
-  src: url(../../fonts/circular-light.woff2);
-  font-family: circular-light; }
-
-.paragraph {
-  color: white;
-  font-family: circular-book, Helvetica, sans-serif;
-  display: inline-block;
-  line-height: 1.1;
-  font-size: 1rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0); }
-  .paragraph:hover {
-    border-bottom: 1px solid white; }
-
-.heading-primary {
-  color: white;
-  font-size: 2.8rem;
-  font-family: circular-black, Helvetica, sans-serif;
-  padding: 0; }
-
-.heading-secondary {
-  color: white;
-  font-family: circular-bold, Helvetica, sans-serif;
-  font-size: 1.5rem; }
-
-.heading-tertiary {
-  color: white;
-  font-size: 1.2rem;
-  font-family: circular-medium, Helvetica, sans-serif; }
-
 .home {
   display: flex;
   height: 100vh; }
