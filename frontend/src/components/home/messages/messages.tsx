@@ -10,7 +10,6 @@ interface props {
     convo: convo
     homeSocket: any
 }
-
 const Messages: React.FC<props> = (props) => {
     const [ convo, setConvo ] = useState<convo>(props.convo);
 

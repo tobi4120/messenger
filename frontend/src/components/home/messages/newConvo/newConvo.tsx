@@ -10,6 +10,7 @@ interface props {
     setUser: any
     state: any
     setState: any
+    homeSocket: any
 }
 
 const NewConvo: React.FC<props> = (props) => {
@@ -40,8 +41,10 @@ const NewConvo: React.FC<props> = (props) => {
     }
 
     const addUserToInput = (user: user) => {
+
         // Don't add the user if it's the current user (i.e a user cannot msg themself) or if the user is already on the convo
         if (user.id !== props.currentUser.id && (!usersInConvo.includes(user))) {
+            
             // Add user to the list of users that are to be on the new convo
             setUsersInConvo([ ...usersInConvo, user]);
 
@@ -113,7 +116,8 @@ const NewConvo: React.FC<props> = (props) => {
                         usersInConvo={usersInConvo}
                         setUser={props.setUser}
                         state={props.state}
-                        setState={props.setState} />
+                        setState={props.setState}
+                        homeSocket={props.homeSocket} />
                 }
             </div>
         </div>

@@ -63,6 +63,7 @@ class ConvoSerializer(serializers.ModelSerializer):
 
 class UserSerializerConvos(serializers.ModelSerializer):
     convos = serializers.SerializerMethodField()
+    profile_pic = serializers.ImageField(use_url=False, allow_null=True)
 
     class Meta:
         model = User

@@ -12,6 +12,7 @@ interface props {
     setUser: any
     state: any
     setState: any
+    homeSocket: any
 }
 
 interface state {
@@ -45,26 +46,30 @@ const ConvoPlaceholder: React.FC<props> = (props) => {
             profile_pic: props.currentUser.profile_pic
         }
 
-        // Create new convo and new message
+        // Create new convo and new message (call API's)
         const usersInConvo = [...props.usersInConvo, currentUser]
         let newConvo: convo = await createConvo(usersInConvo);
-        const newMessage = await saveMessageAPI(
+        let newMessage = await saveMessageAPI(
             state.newMessage, 
             props.currentUser.id, 
             newConvo.id)
-
-        // ____________Update state_______________
-        // Add members and messages to convo object
-        newConvo = { ...newConvo, members: usersInConvo, messages: [... newConvo.messages, newMessage] }
-
-        // Prepend convo to user
-        props.setUser({ ...props.currentUser, convos: [newConvo, ...props.currentUser.convos] }) 
+        
+        newMessage = { ...newMessage, convo: newConvo.id} // Change convo field to convo ID (so we don't have a circular, repeating object)
 
         // Set newChat state to false so that the newConvo placeholder goes away
-        props.setState({ ...props.state, newChat: false })
+        props.setState({ ...props.state, newChat: false });
+
+        // ____________Send message to websocket_______________
+        
+        // Add members and messages to convo object
+        newConvo = { ...newConvo, members: usersInConvo, messages: [... newConvo.messages, newMessage] };
+
+        let webSocketMsg = newMessage;
+        webSocketMsg = { ...webSocketMsg, convo: newConvo};
+        props.homeSocket.send(JSON.stringify(webSocketMsg));
 
         // Navigate to the URL of the new convo
-        navigate(`/convo/${newConvo.id}`)
+        navigate(`/convo/${newConvo.id}`);
     }
 
     return (

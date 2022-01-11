@@ -57,6 +57,7 @@ const LoadMessages: React.FC<props> = (props) => {
                     setUser={props.setUser} 
                     state={props.state}
                     setState={props.setState}
+                    homeSocket={props.homeSocket}
                 />
     
     if (!userInConvo) return <Navigate to="/" />

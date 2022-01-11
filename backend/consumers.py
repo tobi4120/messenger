@@ -36,7 +36,7 @@ class HomeConsumer(AsyncWebsocketConsumer):
                 'message': message,
                 'sentAt': sentAt,
                 'user': user,
-                'convo': convo
+                'convo': convo,
             }
         )
     
@@ -53,7 +53,7 @@ class HomeConsumer(AsyncWebsocketConsumer):
             'message': message,
             'sentAt': sentAt,
             'user': user,
-            'convo': convo
+            'convo': convo,
         }))
 
 class ChatRoomConsumer(AsyncWebsocketConsumer):

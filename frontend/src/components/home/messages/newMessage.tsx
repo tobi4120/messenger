@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { convo, user } from "../../interfaces";
 import { handleChange } from "../../../helperFunctions/handleChange";
 import { saveMessageAPI } from "../../API/messagesAPI";
@@ -19,6 +19,9 @@ const NewMessage: React.FC<props> = (props) => {
     const [state, setState] = useState<state>({
         newMessage: ""
     });
+    // Convo ref (need to use this in useEffect)
+    const convoRef = useRef<convo>(props.oldConvo);
+    convoRef.current = props.oldConvo;
 
     // Web socket
     const roomName = JSON.parse(props.convoID.toString());
@@ -35,8 +38,8 @@ const NewMessage: React.FC<props> = (props) => {
         chatSocket.onmessage = (e) => {
             const msg = JSON.parse(e.data);
 
-            // Update messages state (so the message show automatically on the screen)
-            props.updateMessagesState(({ ...props.oldConvo, messages: [...props.oldConvo.messages, msg] }));
+            // Update messages state (so the new message shows automatically on the screen)
+            props.updateMessagesState(({ ...convoRef.current, messages: [...convoRef.current.messages, msg] }));
         }
     }, [])
 
@@ -45,7 +48,10 @@ const NewMessage: React.FC<props> = (props) => {
         if (state.newMessage === "") return
 
         // Call API
-        const response = await saveMessageAPI(state.newMessage, props.user.id, props.convoID);
+        let response = await saveMessageAPI(state.newMessage, props.user.id, props.convoID);
+
+        // Update convo field so it's the entire convo, not just the ID
+        response.convo = props.oldConvo
 
         // Send message to websockets
         props.homeSocket.send(JSON.stringify(response));
