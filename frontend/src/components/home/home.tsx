@@ -39,8 +39,10 @@ const Home: React.FC = (props) => {
     if (location.pathname !== "/" && location.pathname !== "/convo") urlIsNot_convoID = false
 
     // Web socket
+    const ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
     const homeSocket = new WebSocket(
-        'ws://' +
+        ws_scheme +
+        '://' +
         window.location.host +
         '/ws/'
     );

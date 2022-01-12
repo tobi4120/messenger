@@ -24,9 +24,11 @@ const NewMessage: React.FC<props> = (props) => {
     convoRef.current = props.oldConvo;
 
     // Web socket
+    const ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
     const roomName = JSON.parse(props.convoID.toString());
     const chatSocket = new WebSocket(
-        'ws://' +
+        ws_scheme + 
+        '://' +
         window.location.host +
         '/ws/convo/' +
         roomName +
