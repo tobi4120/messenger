@@ -91,6 +91,9 @@ DATABASES = {
     }
 }
 
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -174,7 +177,7 @@ ASGI_APPLICATION = 'msg_app.routing.application'
 #Production
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "channels_redis.msg_app.RedisChannelLayer",
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
             "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
         },
