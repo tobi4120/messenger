@@ -17,9 +17,9 @@ const Menu: React.FC<Props> = (props) => {
         <div className="menu">
             <div className="menu__header">
                 <h1 className="menu__header__heading">Chats</h1>
-                <button onClick={() => {
+                <button className="menu__header__newChat" onClick={() => {
                     navigate("/convo/newChat");
-                }}>New chat</button>
+                }}>&#x2b;</button>
             </div>
             
             {/* New chat */}

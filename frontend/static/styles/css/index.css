@@ -31,7 +31,7 @@ p {
   display: flex;
   align-items: center;
   padding: 20px 40px 20px 30px;
-  border-bottom: 1.5px solid #ededed; }
+  border-bottom: 1.5px solid #dedede; }
   .header__left {
     display: flex;
     align-items: center;
@@ -43,7 +43,7 @@ p {
     .header__left__appName {
       font-weight: 400;
       font-size: 1.2rem;
-      color: #2b3035; }
+      color: #252a2e; }
   .header__right img {
     width: 40px;
     height: 40px;
@@ -53,11 +53,19 @@ p {
 
 .menu {
   min-width: 300px;
-  border-right: 1px solid black; }
+  border-right: 1.5px solid #dedede;
+  padding: 20px; }
   .menu__header {
-    display: flex; }
+    display: flex;
+    align-items: center; }
     .menu__header__heading {
+      font-weight: 450;
+      font-size: 0.9rem;
+      color: #252a2e;
       flex: 1; }
+    .menu__header__newChat {
+      color: #6545DE;
+      font-size: 1.5rem; }
 
 .convoItem {
   display: flex;

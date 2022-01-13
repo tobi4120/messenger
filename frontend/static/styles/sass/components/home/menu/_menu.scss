@@ -1,12 +1,22 @@
 .menu {
     min-width: 300px;
-    border-right: 1px solid black;
+    border-right: 1.5px solid $white-smoke;
+    padding: 20px;
 
     &__header {
         display: flex;
+        align-items: center;
 
         &__heading {
+            font-weight: 450;
+            font-size: 0.9rem;
+            color: $dark-grey;
             flex: 1;
+        }
+
+        &__newChat {
+            color: $purple;
+            font-size: 1.5rem;
         }
     }
 }
