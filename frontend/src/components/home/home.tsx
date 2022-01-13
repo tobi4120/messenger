@@ -7,6 +7,7 @@ import { Navigate } from 'react-router-dom';
 import Loader from "../other/loading";
 import { user } from "../interfaces";
 import { updateMenu } from "../../helperFunctions/menuFunctions";
+import Header from "./Header";
 
 interface stateFields {
     isLoaded: boolean
@@ -124,26 +125,30 @@ const Home: React.FC = (props) => {
 
     return (
         <div className="home">
-            <Menu 
-                user={user}
-                state={state}
-                setState={setState} />
-            <Routes>
-                <Route path="convo/:convoId" 
-                       element={ <LoadMessages 
-                                    user={user} 
-                                    setUser={setUser}
-                                    state={state}
-                                    setState={setState}
-                                    homeSocket={homeSocket} />} />
-            </Routes>
+            <Header userImage={user.profile_pic} />
 
-            {/* No chats */}
-            { urlIsNot_convoID && 
-                <div>
-                    Select a chat or start a new conversation
-                </div> 
-            }
+            <div className="body">
+                <Menu 
+                    user={user}
+                    state={state}
+                    setState={setState} />
+                <Routes>
+                    <Route path="convo/:convoId" 
+                        element={ <LoadMessages 
+                                        user={user} 
+                                        setUser={setUser}
+                                        state={state}
+                                        setState={setState}
+                                        homeSocket={homeSocket} />} />
+                </Routes>
+
+                {/* No chats */}
+                { urlIsNot_convoID && 
+                    <div>
+                        Select a chat or start a new conversation
+                    </div> 
+                }
+            </div>
         </div>
     )
 };

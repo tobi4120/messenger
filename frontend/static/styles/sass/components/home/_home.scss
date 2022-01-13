@@ -1,4 +1,39 @@
-.home {
+.body {
     display: flex;
     height: 100vh;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    padding: 20px 40px 20px 30px;
+    border-bottom: 1.5px solid $white-smoke;
+
+    &__left {
+        display: flex;
+        align-items: center;
+        flex: 1;
+
+        &__logo {
+            height: 24px;
+            width: 22px;
+            margin-right: 25px;
+        }
+
+        &__appName {
+            font-weight: 400;
+            font-size: 1.2rem;
+            color: $dark-grey;
+        }
+    }
+
+    &__right {
+        img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center top;
+        }
+    }
 }
