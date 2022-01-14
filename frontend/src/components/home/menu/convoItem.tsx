@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { user, convo } from "../../interfaces";
 import ProfilePic from "../convoItemComponents/profilePic";
 import Header from "../convoItemComponents/header";
@@ -15,9 +15,21 @@ interface Props {
 
 const ConvoItem: React.FC<Props> = (props) => {
     const navigate = useNavigate();
+    const [className, setClassName] = useState<string>("convoItem");
+    let picCount = 0;
+
+    useEffect(() => {
+        if (!props.state.urlParam) return
+
+        if (parseInt(props.state.urlParam) === props.convo.id) {
+            setClassName("convoItem active")
+        } else {
+            setClassName("convoItem")
+        }
+    }, [props.state.urlParam])
 
     return (
-        <div className="convoItem" onClick={() => { 
+        <div className={className} onClick={() => { 
                 props.setState({ ...props.state, newChat: false })
                 navigate(`/convo/${props.convo.id}`) 
             }}>
@@ -28,17 +40,25 @@ const ConvoItem: React.FC<Props> = (props) => {
                 {/* Convo image */}
                 <div className="convoItem__left__memberImages">
 
-                    {/* If convo has more than 2 members*/}
+                    {/* Group convos */}
                     {props.convo.members.length > 2 ? 
                         <div className="convoItem__left__memberImages__multiple">
-                            {props.convo.members.map(member => {
+                            {props.convo.members.map((member, index) => {
                                 if (member.email !== props.user.email) {
-                                    return <ProfilePic imageLocation={member.profile_pic} /> 
+
+                                    if (picCount < 2)  {
+                                        picCount++
+                                        return (
+                                            <div className={`convoItem__left__memberImages__multiple__${index}`}>
+                                                <ProfilePic imageLocation={member.profile_pic} /> 
+                                            </div> 
+                                        )
+                                    }
                                 }
                             })}
                         </div> :
 
-                        // If convo has only 2 members
+                        // One-on-one convos
                         props.convo.members[0].email === props.user.email ? 
                             <ProfilePic imageLocation={props.convo.members[1].profile_pic} /> :
                             <ProfilePic imageLocation={props.convo.members[0].profile_pic} />

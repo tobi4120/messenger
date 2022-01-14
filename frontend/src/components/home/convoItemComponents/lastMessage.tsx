@@ -9,8 +9,12 @@ interface props {
 const LastMessage: React.FC<props> = (props) => {
     return (
         <div className="convoItem__right__lastMessage__messageAndUser">
-            <p>{props.lastMessage.user.email === props.user.email ? "You: " : props.lastMessage.user.first_name + ": "}</p>
-            <p>{props.lastMessage.message}</p>
+            <p>
+                {props.lastMessage.user.email === props.user.email ? "You: " : props.lastMessage.user.first_name + ": "}
+            </p>
+            <p className="convoItem__right__lastMessage__messageAndUser__msg">
+                {props.lastMessage.message}
+            </p>
         </div>
     )
 }

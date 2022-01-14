@@ -24,6 +24,7 @@ const LoadMessages: React.FC<props> = (props) => {
     useEffect(() => {
         setIsLoaded(false);
         getConvoFromAPI();
+        props.setState({ ...props.state, urlParam: convoId }) // Menu component needs the URL param
     }, [convoId])
 
     const getConvoFromAPI = async () => {

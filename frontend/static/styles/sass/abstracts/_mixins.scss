@@ -1,15 +1,7 @@
-@mixin btn($color, $hover-color-bg, $hover-color-text) {
-    color: $color;
-    font-size: 0.75rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-family: circular-book, $back-up-fonts;
-    border-radius: 30px;
-    transition: 0.3s;
-    cursor: pointer;
-
-    &:hover {
-        background-color: $hover-color-bg;
-        color: $hover-color-text;
-    }
+@mixin profileImg($border-radius, $size) {
+    border-radius: $border-radius;
+    width: $size;
+    height: $size;
+    object-fit: cover;
+    object-position: center top;
 }

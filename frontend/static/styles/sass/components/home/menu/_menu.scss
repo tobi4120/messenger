@@ -1,11 +1,13 @@
 .menu {
-    min-width: 300px;
+    min-width: 350px;
+    max-width: 350px;
     border-right: 1.5px solid $white-smoke;
     padding: 20px;
 
     &__header {
         display: flex;
         align-items: center;
+        margin-bottom: 10px;
 
         &__heading {
             font-weight: 450;
@@ -18,5 +20,9 @@
             color: $purple;
             font-size: 1.5rem;
         }
+    }
+
+    &__newMsg {
+        align-items: center;
     }
 }

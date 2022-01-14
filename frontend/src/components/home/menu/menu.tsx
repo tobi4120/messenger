@@ -15,9 +15,12 @@ const Menu: React.FC<Props> = (props) => {
 
     return (
         <div className="menu">
+
+            {/* Menu header */}
             <div className="menu__header">
                 <h1 className="menu__header__heading">Chats</h1>
                 <button className="menu__header__newChat" onClick={() => {
+                    props.setState({ ...props.state, newChat: true })
                     navigate("/convo/newChat");
                 }}>&#x2b;</button>
             </div>
@@ -31,22 +34,24 @@ const Menu: React.FC<Props> = (props) => {
                         </div>
                     </div>
                     <div className="convoItem__right">
-                        <p>New message</p>
+                        <p className="convoItem__right__newMsg">New message</p>
                     </div>
                 </div> 
             }
 
             {/* Convos */}
-            {props.user.convos.map(convo => {
-                return (
-                    <ConvoItem 
-                        key={convo.id} 
-                        user={props.user} 
-                        convo={convo}
-                        state={props.state}
-                        setState={props.setState} />
-                )
-            })}
+            <div className="menu__body">
+                {props.user.convos.map(convo => {
+                    return (
+                        <ConvoItem 
+                            key={convo.id} 
+                            user={props.user} 
+                            convo={convo}
+                            state={props.state}
+                            setState={props.setState} />
+                    )
+                })}
+            </div>
         </div>
     )
 };

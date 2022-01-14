@@ -15,6 +15,7 @@ interface stateFields {
     userHasConvos: boolean
     idOfMostRecentConvo: number | null
     newChat: boolean
+    urlParam: string | null
 }
 
 const Home: React.FC = (props) => {
@@ -23,7 +24,8 @@ const Home: React.FC = (props) => {
         authenticated: false,
         userHasConvos: false,
         idOfMostRecentConvo: null,
-        newChat: false
+        newChat: false,
+        urlParam: null
     });
 
     // User state
@@ -133,7 +135,8 @@ const Home: React.FC = (props) => {
                     state={state}
                     setState={setState} />
                 <Routes>
-                    <Route path="convo/:convoId" 
+                    <Route 
+                        path="convo/:convoId" 
                         element={ <LoadMessages 
                                         user={user} 
                                         setUser={setUser}
