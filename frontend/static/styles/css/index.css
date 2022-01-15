@@ -154,17 +154,17 @@ p {
     color: #252a2e;
     font-weight: 400;
     margin-bottom: 35px; }
-  .messages__messageAndTimeSent:not(:last-child) {
-    margin-bottom: 3px; }
   .messages__timeSent {
     font-size: 0.85rem;
     color: #afaeae;
     text-align: center;
-    margin-bottom: 5px; }
+    margin-top: 25px;
+    margin-bottom: 25px; }
 
 .message, .messageCurrentUser {
   display: flex;
-  align-items: flex-start; }
+  align-items: flex-start;
+  margin-bottom: 3px; }
   .message__left, .message__right, .messageCurrentUser__left, .messageCurrentUser__right {
     border-radius: 15px; }
     .message__left img, .message__right img, .messageCurrentUser__left img, .messageCurrentUser__right img {
@@ -176,12 +176,14 @@ p {
     .message__left__text, .message__right__text, .messageCurrentUser__left__text, .messageCurrentUser__right__text {
       font-size: 0.9rem; }
 
-.message__left img {
+.message__left {
+  width: 27px;
+  height: 27px;
   margin-right: 15px; }
 
 .message__right {
   padding: 10px 17px;
-  max-width: 350px;
+  max-width: 550px;
   background-color: #f3f2f2; }
 
 .messageCurrentUser {
@@ -190,8 +192,10 @@ p {
   .messageCurrentUser__left {
     padding: 10px 17px;
     background-color: #6545DE;
-    max-width: 350px; }
+    max-width: 550px; }
     .messageCurrentUser__left__text {
       color: white; }
-  .messageCurrentUser__right img {
+  .messageCurrentUser__right {
+    width: 27px;
+    height: 27px;
     margin-left: 15px; }

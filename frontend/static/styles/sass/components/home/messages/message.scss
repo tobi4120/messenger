@@ -1,6 +1,7 @@
 .message, .messageCurrentUser {
     display: flex;
     align-items: flex-start;
+    margin-bottom: 3px;
 
     &__left, &__right {
         border-radius: 15px;
@@ -18,14 +19,14 @@
 // Message for other users
 .message {
     &__left {
-        img {
-            margin-right: 15px;
-        }
+        width: 27px;
+        height: 27px;
+        margin-right: 15px;
     }
 
     &__right {
         padding: 10px 17px;
-        max-width: 350px;
+        max-width: 550px;
         background-color: $hover;
     }
 }
@@ -38,7 +39,7 @@
     &__left {
         padding: 10px 17px;
         background-color: $purple;
-        max-width: 350px;
+        max-width: 550px;
 
         &__text {
             color: white;
@@ -46,8 +47,8 @@
     }
 
     &__right {
-        img {
-            margin-left: 15px;
-        }
+        width: 27px;
+        height: 27px;
+        margin-left: 15px;
     }
 }

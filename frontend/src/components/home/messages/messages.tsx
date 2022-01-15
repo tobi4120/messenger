@@ -42,6 +42,7 @@ const Messages: React.FC<props> = (props) => {
                         <Message 
                             key={message.id} 
                             user={props.user}
+                            prevMessage={prevMessage}
                             message={message} /> 
                     </div>
                 )

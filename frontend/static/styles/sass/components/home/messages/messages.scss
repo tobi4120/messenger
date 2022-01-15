@@ -11,14 +11,11 @@
         }
     }
 
-    &__messageAndTimeSent:not(:last-child) {
-        margin-bottom: 3px;
-    }
-
     &__timeSent {
         font-size: 0.85rem;
         color: $light-grey;
         text-align: center;
-        margin-bottom: 5px;
+        margin-top: 25px;
+        margin-bottom: 25px;
     }
 }
