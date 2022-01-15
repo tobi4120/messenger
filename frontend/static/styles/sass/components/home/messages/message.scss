@@ -1,0 +1,53 @@
+.message, .messageCurrentUser {
+    display: flex;
+    align-items: flex-start;
+
+    &__left, &__right {
+        border-radius: 15px;
+
+        img {
+            @include profileImg(40%, 27px);
+        }
+
+        &__text {
+            font-size: 0.9rem;
+        }
+    }
+}
+
+// Message for other users
+.message {
+    &__left {
+        img {
+            margin-right: 15px;
+        }
+    }
+
+    &__right {
+        padding: 10px 17px;
+        max-width: 350px;
+        background-color: $hover;
+    }
+}
+
+// Message for current user
+.messageCurrentUser {
+    display: flex;
+    flex-direction: row-reverse;
+
+    &__left {
+        padding: 10px 17px;
+        background-color: $purple;
+        max-width: 350px;
+
+        &__text {
+            color: white;
+        }
+    }
+
+    &__right {
+        img {
+            margin-left: 15px;
+        }
+    }
+}
