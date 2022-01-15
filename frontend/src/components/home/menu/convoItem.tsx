@@ -49,7 +49,7 @@ const ConvoItem: React.FC<Props> = (props) => {
                                     if (picCount < 2)  {
                                         picCount++
                                         return (
-                                            <div className={`convoItem__left__memberImages__multiple__${index}`}>
+                                            <div className={`convoItem__left__memberImages__multiple__${picCount}`}>
                                                 <ProfilePic imageLocation={member.profile_pic} /> 
                                             </div> 
                                         )

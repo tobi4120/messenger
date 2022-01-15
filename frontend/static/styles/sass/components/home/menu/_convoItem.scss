@@ -15,6 +15,7 @@
         &__memberImages {
             margin-right: 15px;
             position: relative;
+            height: 45px;
             width: 45px;
             
             img {
@@ -31,12 +32,13 @@
                 &__1 {
                     img {
                         left: 20px;
+                        top: 2px;
                     }
                 }
 
                 &__2 {
                     img {
-                        top: 18px;
+                        top: 20px;
                     }
                 }
             }

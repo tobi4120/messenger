@@ -21,10 +21,12 @@ const Messages: React.FC<props> = (props) => {
         <div className="messages">
             
             {/* Header */}
-            <Header 
-                convo={convo}
-                user={props.user}
-                headerType={"h1"} />
+            <div className="messages__header">
+                <Header 
+                    convo={convo}
+                    user={props.user}
+                    headerType={"h1"} />
+            </div>
 
             {/* Render messages */
             convo.messages.map((message, index) => {

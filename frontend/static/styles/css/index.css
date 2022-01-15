@@ -23,9 +23,14 @@ button {
 p {
   display: inline; }
 
+.home {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; }
+
 .body {
   display: flex;
-  height: 100vh; }
+  overflow: hidden; }
 
 .header {
   display: flex;
@@ -84,6 +89,7 @@ p {
   .convoItem__left__memberImages {
     margin-right: 15px;
     position: relative;
+    height: 45px;
     width: 45px; }
     .convoItem__left__memberImages img {
       display: block;
@@ -100,9 +106,10 @@ p {
       object-fit: cover;
       object-position: center top; }
     .convoItem__left__memberImages__multiple__1 img {
-      left: 20px; }
+      left: 20px;
+      top: 2px; }
     .convoItem__left__memberImages__multiple__2 img {
-      top: 18px; }
+      top: 20px; }
   .convoItem__right {
     width: 100%;
     display: flex;
@@ -141,7 +148,12 @@ p {
 
 .messages {
   width: 100%;
-  overflow: scroll; }
+  overflow: scroll;
+  padding: 30px; }
+  .messages__header h1 {
+    color: #252a2e;
+    font-weight: 400;
+    margin-bottom: 35px; }
   .messages__messageAndTimeSent:not(:last-child) {
     margin-bottom: 15px; }
   .messages__timeSent {

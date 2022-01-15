@@ -1,6 +1,15 @@
 .messages {
     width: 100%;
     overflow: scroll;
+    padding: 30px;
+
+    &__header {
+        h1 {
+            color: $dark-grey;
+            font-weight: 400;
+            margin-bottom: 35px;
+        }
+    }
 
     &__messageAndTimeSent:not(:last-child) {
         margin-bottom: 15px;
