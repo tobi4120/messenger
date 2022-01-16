@@ -36,4 +36,35 @@
         margin-top: 25px;
         margin-bottom: 25px;
     }
+
+    // New message
+    &__newMsg {
+        margin-top: 15px;
+
+        &__text {
+            display: flex;
+            color: $purple;
+            align-items: center;
+
+            textarea {
+                flex: 1;
+                padding: 10px;
+                resize: none;
+
+                font-family: "Helvetica Neue", $back-up-fonts;
+                font-size: 0.9rem;
+                color: $dark-grey;
+
+                border: 1px solid $lavendar;
+                border-radius: 8px;
+
+                margin-right: 15px;
+                margin-left: 10px;
+            }
+
+            svg {
+                cursor: pointer;
+            }
+        }
+    }
 }

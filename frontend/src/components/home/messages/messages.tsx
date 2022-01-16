@@ -73,8 +73,7 @@ const Messages: React.FC<props> = (props) => {
                     user={props.user}
                     updateMessagesState={setConvo}
                     oldConvo={convo}
-                    homeSocket={props.homeSocket}
-                    scrollToBottom={scrollToBottom} /> }
+                    homeSocket={props.homeSocket} /> }
             </div>
         </div>
     )
