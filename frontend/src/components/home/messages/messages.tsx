@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { user, convo } from "../../interfaces";
 import Header from "../convoItemComponents/header";
 import Message from "./message";
@@ -12,14 +12,28 @@ interface props {
 }
 const Messages: React.FC<props> = (props) => {
     const [ convo, setConvo ] = useState<convo>(props.convo);
+    const msgsContentElem = useRef<HTMLDivElement>(null);
+    const messagesEndRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        setConvo(props.convo)
-    }, [props.convo])
+        scrollToBottom();
+    }, [props.convo, convo.messages])
+
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView()
+    }
+
+    // const scrollToBottom = () => {
+    //     if (msgsContentElem.current) {
+    //         msgsContentElem.current.scrollTop = msgsContentElem.current.scrollHeight;
+    //         console.log(msgsContentElem.current.scrollTop)
+    //     }
+    // }
 
     return (
         <div className="messages">
-            <div className="messages__content">
+
+            <div className="messages__content" ref={msgsContentElem}>
                 {/* Header */}
                 <div className="messages__header">
                     <Header 
@@ -48,8 +62,8 @@ const Messages: React.FC<props> = (props) => {
                             </div>
                         )
                     })}
+                    <div ref={messagesEndRef} />
                 </div>
-
             </div>
 
             {/* Type new message */}
@@ -59,7 +73,8 @@ const Messages: React.FC<props> = (props) => {
                     user={props.user}
                     updateMessagesState={setConvo}
                     oldConvo={convo}
-                    homeSocket={props.homeSocket} /> }
+                    homeSocket={props.homeSocket}
+                    scrollToBottom={scrollToBottom} /> }
             </div>
         </div>
     )

@@ -13,6 +13,7 @@ interface props {
     updateMessagesState: any
     oldConvo: convo
     homeSocket: any
+    scrollToBottom: () => void
 }
 
 const NewMessage: React.FC<props> = (props) => {
@@ -59,8 +60,15 @@ const NewMessage: React.FC<props> = (props) => {
         props.homeSocket.send(JSON.stringify(response));
         chatSocket.send(JSON.stringify(response));
 
+        // Scroll to bottom of page
+        //props.scrollToBottom();
+
         // Clear textbox
         setState({ ...state, newMessage: "" });
+    }
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.code === "Enter") saveMessage();
     }
 
     return (
@@ -69,7 +77,8 @@ const NewMessage: React.FC<props> = (props) => {
                 name="newMessage"
                 value={state.newMessage}
                 placeholder="Write a message..."
-                onChange={(e) => setState(handleChange(e, state))} />
+                onChange={(e) => setState(handleChange(e, state))}
+                onKeyDown={handleKeyDown} />
             <button onClick={saveMessage}>Send</button>
         </div>
     )
