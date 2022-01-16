@@ -1,14 +1,32 @@
 .messages {
     width: 100%;
-    overflow: scroll;
-    padding: 30px;
+    padding: 0px 30px 30px 30px;
+
+    display: flex;
+    flex-direction: column;
 
     &__header {
+        margin-top: 30px;
+        flex: 1;
+        
         h1 {
             color: $dark-grey;
             font-weight: 400;
             margin-bottom: 35px;
         }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        overflow: scroll;
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
     }
 
     &__timeSent {

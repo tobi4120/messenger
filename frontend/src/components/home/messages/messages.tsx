@@ -19,42 +19,48 @@ const Messages: React.FC<props> = (props) => {
 
     return (
         <div className="messages">
-            
-            {/* Header */}
-            <div className="messages__header">
-                <Header 
-                    convo={convo}
-                    user={props.user}
-                    headerType={"h1"} />
+            <div className="messages__content">
+                {/* Header */}
+                <div className="messages__header">
+                    <Header 
+                        convo={convo}
+                        user={props.user}
+                        headerType={"h1"} />
+                </div>
+
+                {/* Message body */ }
+                <div className="messages__body">
+                    {convo.messages.map((message, index) => {
+                        let prevMessage = null;
+
+                        if (index !== 0 && convo) prevMessage = convo.messages[index - 1]
+
+                        return  (
+                            <div className="messages__messageAndTimeSent">
+                                <TimeSent 
+                                    timeMsgSent={message.sentAt}
+                                    timePrevMsgSent={prevMessage && prevMessage.sentAt} />
+                                <Message 
+                                    key={message.id} 
+                                    user={props.user}
+                                    prevMessage={prevMessage}
+                                    message={message} /> 
+                            </div>
+                        )
+                    })}
+                </div>
+
             </div>
 
-            {/* Render messages */
-            convo.messages.map((message, index) => {
-                let prevMessage = null;
-
-                if (index !== 0 && convo) prevMessage = convo.messages[index - 1]
-
-                return  (
-                    <div className="messages__messageAndTimeSent">
-                        <TimeSent 
-                            timeMsgSent={message.sentAt}
-                            timePrevMsgSent={prevMessage && prevMessage.sentAt} />
-                        <Message 
-                            key={message.id} 
-                            user={props.user}
-                            prevMessage={prevMessage}
-                            message={message} /> 
-                    </div>
-                )
-            })}
-
             {/* Type new message */}
-            { <NewMessage 
-                convoID={convo.id}
-                user={props.user}
-                updateMessagesState={setConvo}
-                oldConvo={convo}
-                homeSocket={props.homeSocket} /> }
+            <div className="messages__newMsg">
+                { <NewMessage 
+                    convoID={convo.id}
+                    user={props.user}
+                    updateMessagesState={setConvo}
+                    oldConvo={convo}
+                    homeSocket={props.homeSocket} /> }
+            </div>
         </div>
     )
 };

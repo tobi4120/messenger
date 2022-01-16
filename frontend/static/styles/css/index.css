@@ -29,6 +29,7 @@ p {
   height: 100vh; }
 
 .body {
+  flex: 1;
   display: flex;
   overflow: hidden; }
 
@@ -148,12 +149,25 @@ p {
 
 .messages {
   width: 100%;
-  overflow: scroll;
-  padding: 30px; }
-  .messages__header h1 {
-    color: #252a2e;
-    font-weight: 400;
-    margin-bottom: 35px; }
+  padding: 0px 30px 30px 30px;
+  display: flex;
+  flex-direction: column; }
+  .messages__header {
+    margin-top: 30px;
+    flex: 1; }
+    .messages__header h1 {
+      color: #252a2e;
+      font-weight: 400;
+      margin-bottom: 35px; }
+  .messages__content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: scroll; }
+  .messages__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; }
   .messages__timeSent {
     font-size: 0.85rem;
     color: #afaeae;
