@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { getAllUsers } from "../../../API/auth";
 import { user, convo } from "../../../interfaces";
 import Loader from "../../../other/loading";
@@ -24,6 +24,7 @@ const NewConvo: React.FC<props> = (props) => {
         "name": "",
         "timeOfLastMsg": ""
     })
+    const inputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
         props.setState({ ...props.state, newChat: true })
@@ -50,6 +51,9 @@ const NewConvo: React.FC<props> = (props) => {
 
             // Add user to convoObject
             setConvoObject({ ...convoObject, members: [ ...convoObject.members, user ]});
+
+            // Autofocus the input
+            inputRef.current?.focus();
         }
 
         // Set input to blank
@@ -60,6 +64,9 @@ const NewConvo: React.FC<props> = (props) => {
         const index = usersInConvo.indexOf(user);
         if (index > -1) {
             setUsersInConvo(usersInConvo.filter(userInArray => userInArray != user));
+
+            // Autofocus the input
+            inputRef.current?.focus();
         }
     }
 
@@ -67,45 +74,46 @@ const NewConvo: React.FC<props> = (props) => {
 
     return (
         <div className="newConvo">
-            <p>To: </p>
-            <div className="newConvo__users">
+
+            {/* Add user input */}
+            <div className="newConvo__addUsers">
+                <p className="newConvo__addUsers__label">To:</p>
 
                 {/* Users to be added */}
-                <div className="newConvo__users__userList">
-                    { usersInConvo?.map(user => {
-                        return ( 
-                            <div className="newConvo__users__userList__user">
-                                <p>{user.first_name + " " + user.last_name}</p>
-                                <span onClick={() => removeFromInput(user)}>&#10005;</span>
-                            </div>
-                        )
+                { usersInConvo?.map(user => {
+                    return ( 
+                        <div className="newConvo__addUsers__user">
+                            <p>{user.first_name + " " + user.last_name}</p>
+                            <span onClick={() => removeFromInput(user)}>&#10005;</span>
+                        </div>
+                    )
+                })}
+                
+                {/* Input */}
+                <input 
+                    ref={inputRef}
+                    autoFocus
+                    list="users" 
+                    name="users"
+                    onChange={handleChange}
+                    value={inputValue}
+                    autoComplete="off" />
+            </div>
+            
+            <div className="newConvo__users">
+                {/* User dropdown */}
+                <div className="newConvo__users__addUser__dropdown">
+                    { users.map(user => {
+                        const userName = (user.first_name + user.last_name).toLowerCase();
+                        if ((userName).startsWith(inputValue.toLowerCase())
+                            && inputValue !== "")
+                            return (
+                                <a onClick={() => addUserToInput(user)}>
+                                    {/* <ProfilePic imageLocation={user.profile_pic} /> */}
+                                    {user.first_name + " " + user.last_name}
+                                </a>
+                            )
                     })}
-                </div>
-
-                {/* Add user input */}
-                <div className="newConvo__users__addUser">
-
-                    <input 
-                        list="users" 
-                        name="users"
-                        onChange={handleChange}
-                        value={inputValue}
-                        autoComplete="off" />
-                    
-                    {/* User dropdown */}
-                    {<div className="newConvo__users__addUser__dropdown">
-                        { users.map(user => {
-                            const userName = (user.first_name + user.last_name).toLowerCase();
-                            if ((userName).startsWith(inputValue.toLowerCase())
-                                && inputValue !== "")
-                                return (
-                                    <a onClick={() => addUserToInput(user)}>
-                                        {/* <ProfilePic imageLocation={user.profile_pic} /> */}
-                                        {user.first_name + " " + user.last_name}
-                                    </a>
-                                )
-                        })}
-                    </div>}
                 </div>
 
                 {/* Create convo placeholder */}

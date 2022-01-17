@@ -232,3 +232,34 @@ p {
     width: 27px;
     height: 27px;
     margin-left: 15px; }
+
+.newConvo {
+  width: 100%; }
+  .newConvo__addUsers {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px;
+    border-bottom: 1px solid #dedede; }
+    .newConvo__addUsers__label {
+      margin-right: 15px;
+      color: #252a2e; }
+    .newConvo__addUsers input {
+      flex: 1;
+      font-size: 0.9rem;
+      font-family: "Helvetica Neue", Helvetica, sans-serif;
+      color: #252a2e;
+      border: none; }
+      .newConvo__addUsers input:focus {
+        outline: 0; }
+    .newConvo__addUsers__user {
+      background-color: #dfd7fc;
+      color: #6545DE;
+      padding: 7px;
+      border-radius: 5px;
+      font-size: 0.9rem; }
+      .newConvo__addUsers__user p {
+        margin-right: 10px; }
+      .newConvo__addUsers__user span {
+        cursor: pointer; }
