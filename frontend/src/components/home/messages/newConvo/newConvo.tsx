@@ -90,44 +90,45 @@ const NewConvo: React.FC<props> = (props) => {
                 })}
                 
                 {/* Input */}
-                <input 
-                    ref={inputRef}
-                    autoFocus
-                    list="users" 
-                    name="users"
-                    onChange={handleChange}
-                    value={inputValue}
-                    autoComplete="off" />
-            </div>
-            
-            <div className="newConvo__users">
-                {/* User dropdown */}
-                <div className="newConvo__users__addUser__dropdown">
-                    { users.map(user => {
-                        const userName = (user.first_name + user.last_name).toLowerCase();
-                        if ((userName).startsWith(inputValue.toLowerCase())
-                            && inputValue !== "")
-                            return (
-                                <a onClick={() => addUserToInput(user)}>
-                                    {/* <ProfilePic imageLocation={user.profile_pic} /> */}
-                                    {user.first_name + " " + user.last_name}
-                                </a>
-                            )
-                    })}
-                </div>
+                <div className="newConvo__addUsers__input">
+                    <input 
+                        ref={inputRef}
+                        autoFocus
+                        list="users" 
+                        name="users"
+                        onChange={handleChange}
+                        value={inputValue}
+                        autoComplete="off" />
 
-                {/* Create convo placeholder */}
-                { usersInConvo[0] &&
-                    <ConvoPlaceholder
-                        currentUser={props.currentUser}
-                        convo={convoObject} 
-                        usersInConvo={usersInConvo}
-                        setUser={props.setUser}
-                        state={props.state}
-                        setState={props.setState}
-                        homeSocket={props.homeSocket} />
-                }
+                    {/* User dropdown */}
+                    <div className="newConvo__addUsers__input__dropdown">
+                        { users.map(user => {
+                            const userName = (user.first_name + user.last_name).toLowerCase();
+                            if ((userName).startsWith(inputValue.toLowerCase())
+                                && inputValue !== "")
+                                return (
+                                    <a className="user" onClick={() => addUserToInput(user)}>
+                                        <ProfilePic imageLocation={user.profile_pic} />
+                                        <p>{user.first_name + " " + user.last_name}</p>
+                                    </a>
+                                )
+                        })}
+                    </div>
+
+                </div>
             </div>
+
+            {/* Create convo placeholder */}
+            { usersInConvo[0] &&
+                <ConvoPlaceholder
+                    currentUser={props.currentUser}
+                    convo={convoObject} 
+                    usersInConvo={usersInConvo}
+                    setUser={props.setUser}
+                    state={props.state}
+                    setState={props.setState}
+                    homeSocket={props.homeSocket} />
+            }
         </div>
     )
 }
