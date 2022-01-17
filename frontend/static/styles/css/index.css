@@ -234,7 +234,11 @@ p {
     margin-left: 15px; }
 
 .newConvo {
-  width: 100%; }
+  width: 100%;
+  display: flex;
+  flex-direction: column; }
+  .newConvo .messagesNewConvo {
+    flex: 1; }
   .newConvo__addUsers {
     display: flex;
     align-items: center;

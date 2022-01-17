@@ -1,5 +1,11 @@
 .newConvo {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .messagesNewConvo {
+        flex: 1;
+    }
 
     &__addUsers {
         display: flex;

@@ -4,6 +4,8 @@ import Header from "../../convoItemComponents/header";
 import { createConvo, saveMessageAPI } from "../../../API/messagesAPI";
 import { handleChange } from "../../../../helperFunctions/handleChange";
 import { useNavigate } from 'react-router-dom';
+import TextareaAutosize from 'react-textarea-autosize';
+import SendIcon from '@mui/icons-material/Send';
 
 interface props {
     currentUser: user
@@ -73,19 +75,23 @@ const ConvoPlaceholder: React.FC<props> = (props) => {
     }
 
     return (
-        <div>
-            <Header 
-                convo={props.convo}
-                user={props.currentUser}
-                headerType="h1" />
+        <div className="messages messagesNewConvo">
+            <div className="messages__header">
+                <Header 
+                    convo={props.convo}
+                    user={props.currentUser}
+                    headerType="h1" />
+            </div>
 
-            <div>
-                <textarea
-                    name="newMessage"
-                    value={state.newMessage}
-                    placeholder="Write a message..."
-                    onChange={(e) => setState(handleChange(e, state))} />
-                <button onClick={saveMessage}>Send</button>
+            <div className="messages__newMsg">
+                <div className="messages__newMsg__text">
+                    <TextareaAutosize
+                        name="newMessage"
+                        value={state.newMessage}
+                        placeholder="Write a message..."
+                        onChange={(e) => setState(handleChange(e, state))} />
+                    <SendIcon onClick={saveMessage} />
+                </div>
             </div>
         </div>
     )
