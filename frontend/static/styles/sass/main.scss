@@ -1,15 +1,21 @@
+// Abstracts
 @import "./abstracts/mixins";
 @import "./abstracts/variables";
 
+// Base
 @import "./base/base";
 
-@import "./components/home/home";
+// Componenets
 
-@import "./components/home/menu/menu";
-@import "./components/home/menu/convoItem";
+    // Home
+    @import "./components/home/home";
 
-@import "./components/home/messages/messages";
-@import "./components/home/messages/message";
-@import "./components/home/messages/newConvo";
+    @import "./components/home/menu/menu";
+    @import "./components/home/menu/convoItem";
 
+    @import "./components/home/messages/messages";
+    @import "./components/home/messages/message";
+    @import "./components/home/messages/newConvo";
+
+// Media Queries
 @import "./base/_media_queries";

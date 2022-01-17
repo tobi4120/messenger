@@ -1,0 +1,15 @@
+@media (max-width: 900px) {
+
+    // Menu
+    .menu {
+        min-width: 0px;
+
+        &__body {
+            .convoItem {
+                &__right {
+                    display: none;
+                }
+            }
+        }
+    }
+}

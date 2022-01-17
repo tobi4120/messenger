@@ -297,3 +297,9 @@ p {
         margin-right: 10px; }
       .newConvo__addUsers__user span {
         cursor: pointer; }
+
+@media (max-width: 900px) {
+  .menu {
+    min-width: 0px; }
+    .menu__body .convoItem__right {
+      display: none; } }
