@@ -74,6 +74,13 @@ const ConvoPlaceholder: React.FC<props> = (props) => {
         navigate(`/convo/${newConvo.id}`);
     }
 
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.code === "Enter") {
+            e.preventDefault();
+            saveMessage();
+        } 
+    }
+
     return (
         <div className="messages messagesNewConvo">
             <div className="messages__header">
@@ -89,7 +96,8 @@ const ConvoPlaceholder: React.FC<props> = (props) => {
                         name="newMessage"
                         value={state.newMessage}
                         placeholder="Write a message..."
-                        onChange={(e) => setState(handleChange(e, state))} />
+                        onChange={(e) => setState(handleChange(e, state))}
+                        onKeyDown={handleKeyDown} />
                     <SendIcon onClick={saveMessage} />
                 </div>
             </div>
