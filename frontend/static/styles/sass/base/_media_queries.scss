@@ -2,12 +2,42 @@
 
     // Menu
     .menu {
-        min-width: 0px;
+        min-width: 100px;
+        max-width: 100px;
 
-        &__body {
-            .convoItem {
-                &__right {
-                    display: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &__header {
+            &__heading {
+                margin-right: 10px;
+            }
+        }
+
+        .convoItem {
+            max-width: none;
+            &__left {
+                &__memberImages {
+                    margin-right: 0px;
+                }
+            }
+
+            &__right {
+                display: none;
+            }
+        }
+    }
+}
+
+@media (max-width: 460px) {
+    .newConvo {
+        &__addUsers {
+            &__input {
+                position: static;
+
+                &__dropdown {
+                    left: 40px;
                 }
             }
         }

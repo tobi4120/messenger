@@ -300,6 +300,22 @@ p {
 
 @media (max-width: 900px) {
   .menu {
-    min-width: 0px; }
-    .menu__body .convoItem__right {
-      display: none; } }
+    min-width: 100px;
+    max-width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+    .menu__header__heading {
+      margin-right: 10px; }
+    .menu .convoItem {
+      max-width: none; }
+      .menu .convoItem__left__memberImages {
+        margin-right: 0px; }
+      .menu .convoItem__right {
+        display: none; } }
+
+@media (max-width: 460px) {
+  .newConvo__addUsers__input {
+    position: static; }
+    .newConvo__addUsers__input__dropdown {
+      left: 40px; } }
