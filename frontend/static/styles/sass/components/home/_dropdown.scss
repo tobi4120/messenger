@@ -1,0 +1,46 @@
+.header-profile-pic {
+    position: relative;
+
+    &__img {
+        cursor: pointer;
+    }
+}
+
+.dropdown {
+    position: absolute;
+    width: 200px;
+    right: 0;
+    background-color: white;
+    color: $dark-grey;
+    
+    box-shadow: rgba(15, 15, 15, 0.15) 0px 1px 10px 1px;
+    border: 1px solid $white-smoke;
+    border-radius: 7px;
+
+    &__list {
+        padding: 8px;
+
+        &__listItem {
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+            padding: 7px;
+            border-radius: 7px;
+
+            svg {
+                font-size: 1.4rem;
+            }
+
+            &:hover {
+                background-color: $hover;
+            }
+        }
+
+        a {
+            color: $dark-grey;
+        }
+    }
+}

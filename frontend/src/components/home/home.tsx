@@ -7,7 +7,7 @@ import { Navigate } from 'react-router-dom';
 import Loader from "../other/loading";
 import { user } from "../interfaces";
 import { updateMenu } from "../../helperFunctions/menuFunctions";
-import Header from "./Header";
+import Header from "../other/header";
 
 interface stateFields {
     isLoaded: boolean
