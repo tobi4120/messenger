@@ -52,7 +52,7 @@ class User(AbstractBaseUser):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
 
-    profile_pic = models.ImageField(null=True, blank=True, upload_to="../frontend/static/images/")
+    profile_pic = models.ImageField(null=True, blank=True)
     upload = models.ImageField(upload_to ='uploads/')
 
     USERNAME_FIELD = 'email'

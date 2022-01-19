@@ -5,11 +5,11 @@ interface Props {
 }
 
 const ProfilePic: React.FC<Props> = (props) => { 
-    const [staticLocation, setStaticLocation] = useState<string>("../../../../");
+    const [staticLocation, setStaticLocation] = useState<string>("../../../../static/images/");
 
     return (
-        <img src={props.imageLocation ? (staticLocation + props.imageLocation.substring(12, props.imageLocation.length)) : 
-            (staticLocation + "static/images/genericProfile.png")} />
+        <img src={props.imageLocation ? (staticLocation + props.imageLocation) : 
+            (staticLocation + "genericProfile.png")} />
     )
 }
 export default ProfilePic

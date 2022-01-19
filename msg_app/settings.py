@@ -139,6 +139,10 @@ STATIC_DIRS = {
     os.path.join(BASE_DIR, 'frontend/static')
 }
 
+MEDIA_ROOT = os.path.join(BASE_DIR, "frontend/static/images")
+
+MEDIA_URL = "/images/"
+
 AUTH_USER_MODEL = 'backend.User'
 
 DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
