@@ -32,9 +32,9 @@ const Message: React.FC<props> = (props) => {
         // Msg padding
         if (props.prevMessage) {
             if (props.prevMessage.user.email !== props.message.user.email) {
-                if (props.prevMessage.user.email !== props.user.email && props.message.user.email !== props.user.email) {
-                    setMsgMarginTop("25px")
-                }
+                //if (props.prevMessage.user.email !== props.user.email && props.message.user.email !== props.user.email) {
+                    setMsgMarginTop("20px")
+                //}
             }
         }
     }, [])
