@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { handleChange } from "../../helperFunctions/handleChange";
 import { login, getUserData, logout } from "../API/auth";
 import { Navigate } from 'react-router-dom';
+import AuthPreview from "./authPreview";
 
 interface stateFields {
     email: string, 
@@ -54,32 +55,37 @@ const Login = () => {
         return <Navigate to="/" />
 
     return (
-        <div>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <label>Email</label>
-                <input 
-                    name="email"
-                    type="email" 
-                    value={ state.email } 
-                    placeholder="Enter your email address..."
-                    onChange={(e) => setState(handleChange(e, state))}
-                    required /><br />
+        <div className="auth">
+            <AuthPreview />
+            <div className="auth__authForm">
+                <h1>Login</h1>
+                <form onSubmit={handleSubmit}>
+                    <label>Email address</label><br />
+                    <input 
+                        name="email"
+                        type="email" 
+                        value={ state.email } 
+                        placeholder="Enter your email address..."
+                        onChange={(e) => setState(handleChange(e, state))}
+                        required /><br />
 
-                <label>Password</label>
-                <input 
-                    name="password"
-                    type="password" 
-                    value={ state.password } 
-                    placeholder="Enter your password..."
-                    onChange={(e) => setState(handleChange(e, state))}
-                    required /><br />
+                    <label>Password</label><br />
+                    <input 
+                        name="password"
+                        type="password" 
+                        value={ state.password } 
+                        placeholder="Enter your password..."
+                        onChange={(e) => setState(handleChange(e, state))}
+                        required /><br />
 
-                <input 
-                    type="submit"
-                    value="Log in"
-                />
-            </form>
+                    <input 
+                        type="submit"
+                        value="Log in"
+                    />
+
+                    <p className="link">Don't have an account? <a href="/register">Register</a></p>
+                </form>
+            </div>
         </div>
     )
 };

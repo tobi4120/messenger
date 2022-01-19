@@ -5,3 +5,13 @@
     object-fit: cover;
     object-position: center top;
 }
+
+@mixin input {
+    padding: 10px;
+    font-family: "Helvetica Neue", $back-up-fonts;
+    font-size: 0.9rem;
+    color: $dark-grey;
+
+    border: 1px solid $lavendar;
+    border-radius: 8px;
+}

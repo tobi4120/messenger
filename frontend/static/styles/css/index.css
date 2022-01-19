@@ -181,14 +181,15 @@ p {
       color: #6545DE;
       align-items: center; }
       .messages__newMsg__text textarea {
-        flex: 1;
         padding: 10px;
-        resize: none;
         font-family: "Helvetica Neue", Helvetica, sans-serif;
         font-size: 0.9rem;
         color: #252a2e;
         border: 1px solid #d9d5ec;
         border-radius: 8px;
+        flex: 1;
+        padding: 10px;
+        resize: none;
         margin-right: 15px;
         margin-left: 10px; }
       .messages__newMsg__text svg {
@@ -298,6 +299,85 @@ p {
       .newConvo__addUsers__user span {
         cursor: pointer; }
 
+.auth {
+  display: flex;
+  height: 100vh;
+  overflow: hidden; }
+  .auth__preview {
+    width: 50%;
+    background-color: #dfddee; }
+    .auth__preview__text {
+      padding: 60px 0px 0px 50px;
+      width: 400px; }
+      .auth__preview__text h1 {
+        font-weight: 400;
+        color: #252a2e;
+        margin-bottom: 10px; }
+      .auth__preview__text p {
+        color: #252a2e;
+        font-weight: 300;
+        font-size: 0.9rem; }
+    .auth__preview__image {
+      position: relative; }
+      .auth__preview__image img {
+        max-width: 100%; }
+      .auth__preview__image:after {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        background-image: linear-gradient(to bottom, #dfddee, rgba(255, 255, 255, 0) 90%);
+        width: 100%;
+        height: 4em; }
+  .auth__authForm {
+    padding: 150px 100px;
+    color: #252a2e;
+    width: 50%; }
+    .auth__authForm h1 {
+      font-weight: 400;
+      margin-bottom: 35px; }
+    .auth__authForm label {
+      font-size: 0.9rem; }
+    .auth__authForm input[type=email], .auth__authForm [type=password], .auth__authForm [type=text] {
+      margin-top: 5px;
+      margin-bottom: 15px;
+      padding: 10px;
+      font-family: "Helvetica Neue", Helvetica, sans-serif;
+      font-size: 0.9rem;
+      color: #252a2e;
+      border: 1px solid #d9d5ec;
+      border-radius: 8px;
+      width: 100%; }
+    .auth__authForm input[type=submit] {
+      border: none;
+      background-color: #6545DE;
+      width: 100%;
+      padding: 10px;
+      color: white;
+      border-radius: 8px;
+      margin-top: 5px;
+      cursor: pointer; }
+    .auth__authForm .link {
+      color: #252a2e;
+      font-size: 0.9rem;
+      margin-top: 10px;
+      display: inline-block; }
+      .auth__authForm .link a {
+        color: #6545DE; }
+        .auth__authForm .link a:hover {
+          text-decoration: underline; }
+    .auth__authForm__password-input {
+      position: relative; }
+      .auth__authForm__password-input .visibility-btn {
+        position: absolute;
+        cursor: pointer;
+        top: 11px;
+        right: 10px; }
+      .auth__authForm__password-input input {
+        margin-right: 10px; }
+
 @media (max-width: 900px) {
   .menu {
     min-width: 100px;
@@ -319,3 +399,13 @@ p {
     position: static; }
     .newConvo__addUsers__input__dropdown {
       left: 40px; } }
+
+@media (max-width: 800px) {
+  .auth__preview {
+    display: none; }
+  .auth__authForm {
+    width: 100%; } }
+
+@media (max-width: 500px) {
+  .auth__authForm {
+    padding: 150px 50px; } }
