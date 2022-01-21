@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import ProfilePic from "../home/convoItemComponents/profilePic";
 import Dropdown from "./dropdown";
+import { user } from "../interfaces";
 
 interface props {
-    userImage: string | null
+    user: user
 }
 const Header: React.FC<props> = (props) => {
     const [dropDown, setDropDown] = useState<boolean>(false);
@@ -34,11 +35,11 @@ const Header: React.FC<props> = (props) => {
             <div className="header__right">
                 <div className="header-profile-pic">
                     <div className="header-profile-pic__img" onClick={() => setDropDown(!dropDown)}>
-                        <ProfilePic imageLocation={props.userImage} />
+                        <ProfilePic imageLocation={props.user.profile_pic} />
                     </div>
                     { dropDown && 
                         <div ref={dropdownRef}>
-                           <Dropdown /> 
+                           <Dropdown user={props.user} /> 
                         </div> 
                     }
                 </div>

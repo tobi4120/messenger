@@ -1,0 +1,23 @@
+.modal {
+    cursor: default;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    height: 100vh;
+    width: 100vw;
+
+    background-color: rgba(0, 0, 0, 0.7);
+
+    z-index: 100;
+
+    .changePicture {
+        background-color: white;
+        border-radius: 8px;
+        position: absolute;
+        left: 50%;
+        top: 30%;
+        transform: translate(-50%, -30%);
+    }
+}

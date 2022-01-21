@@ -127,7 +127,7 @@ const Home: React.FC = (props) => {
 
     return (
         <div className="home">
-            <Header userImage={user.profile_pic} />
+            <Header user={user} />
 
             <div className="body">
                 <Menu 
