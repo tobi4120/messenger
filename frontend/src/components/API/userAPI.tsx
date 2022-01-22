@@ -1,5 +1,5 @@
 import axios from 'axios';
-const regeneratorRuntime = require("regenerator-runtime");
+require("regenerator-runtime");
 import { getCookie } from './cookie'
 
 // Configure axios to accept the CSRF Token

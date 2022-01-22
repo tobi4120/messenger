@@ -13,6 +13,7 @@ interface props {
     state: any,
     setState: any
     homeSocket: any
+    reloadMessages: number
 }
 
 const LoadMessages: React.FC<props> = (props) => {
@@ -25,7 +26,7 @@ const LoadMessages: React.FC<props> = (props) => {
         setIsLoaded(false);
         getConvoFromAPI();
         props.setState({ ...props.state, urlParam: convoId }) // Menu component needs the URL param
-    }, [convoId])
+    }, [convoId, props.reloadMessages])
 
     const getConvoFromAPI = async () => {
         if (!convoId || convoId === "newChat") {

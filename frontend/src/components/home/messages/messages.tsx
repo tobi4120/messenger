@@ -23,13 +23,6 @@ const Messages: React.FC<props> = (props) => {
         messagesEndRef.current?.scrollIntoView()
     }
 
-    // const scrollToBottom = () => {
-    //     if (msgsContentElem.current) {
-    //         msgsContentElem.current.scrollTop = msgsContentElem.current.scrollHeight;
-    //         console.log(msgsContentElem.current.scrollTop)
-    //     }
-    // }
-
     return (
         <div className="messages">
 

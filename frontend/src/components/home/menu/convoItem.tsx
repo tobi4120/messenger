@@ -43,7 +43,7 @@ const ConvoItem: React.FC<Props> = (props) => {
                     {/* Group convos */}
                     {props.convo.members.length > 2 ? 
                         <div className="convoItem__left__memberImages__multiple">
-                            {props.convo.members.map((member, index) => {
+                            {props.convo.members.map(member => {
                                 if (member.email !== props.user.email) {
 
                                     if (picCount < 2)  {

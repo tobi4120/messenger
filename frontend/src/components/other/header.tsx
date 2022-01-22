@@ -5,7 +5,11 @@ import { user } from "../interfaces";
 
 interface props {
     user: user
+    setUser: any
+    reloadMessages: number
+    setReloadMessages: any
 }
+
 const Header: React.FC<props> = (props) => {
     const [dropDown, setDropDown] = useState<boolean>(false);
     const dropdownRef= useRef<HTMLDivElement>(null);
@@ -39,7 +43,11 @@ const Header: React.FC<props> = (props) => {
                     </div>
                     { dropDown && 
                         <div ref={dropdownRef}>
-                           <Dropdown user={props.user} /> 
+                           <Dropdown 
+                                user={props.user}
+                                setUser={props.setUser}
+                                reloadMessages={props.reloadMessages}
+                                setReloadMessages={props.setReloadMessages} />
                         </div> 
                     }
                 </div>

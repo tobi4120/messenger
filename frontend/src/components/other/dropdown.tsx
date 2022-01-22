@@ -6,6 +6,9 @@ import { user } from "../interfaces";
 
 interface props {
     user: user
+    setUser: any
+    reloadMessages: number
+    setReloadMessages: any
 }
 
 const Dropdown: React.FC<props> = (props) => {
@@ -20,7 +23,12 @@ const Dropdown: React.FC<props> = (props) => {
 
                     {/* Change Picture */}
                     { changePicturePopUp && 
-                        <ChangePicture user={props.user} />
+                        <ChangePicture 
+                            user={props.user} 
+                            setUser={props.setUser} 
+                            reloadMessages={props.reloadMessages}
+                            setReloadMessages={props.setReloadMessages}
+                            setChangePicturePopUp={setChangePicturePopUp} />
                     }
                 </li>
                 <li>

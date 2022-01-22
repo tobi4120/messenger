@@ -35,6 +35,9 @@ const Home: React.FC = (props) => {
     const userRef = useRef<user | undefined>(user);
     userRef.current = user
 
+    // Reload messages
+    const [reloadMessages, setReloadMessages] = useState<number>(0);
+
     // Check to see if URL is '/' or '/convo/:convoID' -- can't put this in a function for some reason
     let urlIsNot_convoID = true
     const location = useLocation();
@@ -127,7 +130,11 @@ const Home: React.FC = (props) => {
 
     return (
         <div className="home">
-            <Header user={user} />
+            <Header 
+                user={user}
+                setUser={setUser}
+                reloadMessages={reloadMessages}
+                setReloadMessages={setReloadMessages} />
 
             <div className="body">
                 <Menu 
@@ -142,7 +149,8 @@ const Home: React.FC = (props) => {
                                         setUser={setUser}
                                         state={state}
                                         setState={setState}
-                                        homeSocket={homeSocket} />} />
+                                        homeSocket={homeSocket}
+                                        reloadMessages={reloadMessages} />} />
                 </Routes>
 
                 {/* No chats */}
