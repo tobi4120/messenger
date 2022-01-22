@@ -18,8 +18,10 @@ const Dropdown: React.FC<props> = (props) => {
         <div className="dropdown">
             <ul className="dropdown__list">
                 <li className="dropdown__list__listItem changePicture">
-                    <InsertPhotoIcon />
-                    <p onClick={() => setChangePicturePopUp(true)}>Change picture</p>
+                    <a onClick={()=> setChangePicturePopUp(true)}>
+                        <InsertPhotoIcon />
+                        <p>Change picture</p>
+                    </a>
 
                     {/* Change Picture */}
                     { changePicturePopUp && 

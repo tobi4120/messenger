@@ -19,5 +19,45 @@
         left: 50%;
         top: 30%;
         transform: translate(-50%, -30%);
+        padding: 25px;
+
+        &__currentImg {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            img {
+                width: 80px;
+                height: 80px;
+            }
+
+            &__menu {
+                margin-top: 20px;
+                input {
+                    display: block;
+                    margin-bottom: 20px;
+                }
+
+                &__btns {
+                    display: flex;
+                    gap: 30px;
+                    justify-content: center;
+
+                    button {
+                        padding: 10px 20px;
+                        border-radius: 10px;
+                    }
+
+                    .upload {
+                        color: white;
+                        background-color: $purple;
+                    }
+
+                    .cancel {
+                        background-color: $white-smoke;
+                    }
+                }
+            }
+        }
     }
 }

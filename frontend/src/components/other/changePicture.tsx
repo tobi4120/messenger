@@ -47,13 +47,16 @@ const ChangePicture: React.FC<props> = (props) => {
                     <ProfilePic imageLocation={props.user.profile_pic} />
                     { isLoading ? 
                         <Loader />:
-                        <div>
+                        <div className="changePicture__currentImg__menu">
                             <input 
                                 accept="image/*"
                                 type="file"
                                 onChange={(e) => e.target.files && setSelectedImg(e.target.files[0])} />
-                            <button onClick={() => uploadFile()}>Upload picture</button>
-                            <button onClick={() => props.setChangePicturePopUp(false)}>Cancel</button>
+                            
+                            <div className="changePicture__currentImg__menu__btns">
+                                <button className="upload" onClick={() => uploadFile()}>Upload</button>
+                                <button className="cancel" onClick={() => props.setChangePicturePopUp(false)}>Cancel</button>
+                            </div>
                         </div> }
                 </div>
             </div>

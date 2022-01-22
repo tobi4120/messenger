@@ -73,19 +73,24 @@ p {
   border-radius: 7px; }
   .dropdown__list {
     padding: 8px; }
+    .dropdown__list a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px;
+      border-radius: 7px;
+      width: 100%;
+      transition: 0.2s; }
+      .dropdown__list a:hover {
+        background-color: #f3f2f2; }
     .dropdown__list__listItem {
       font-size: 0.9rem;
       display: flex;
       align-items: center;
       gap: 10px;
-      cursor: pointer;
-      transition: 0.2s;
-      padding: 7px;
-      border-radius: 7px; }
+      cursor: pointer; }
       .dropdown__list__listItem svg {
         font-size: 1.2rem; }
-      .dropdown__list__listItem:hover {
-        background-color: #f3f2f2; }
     .dropdown__list a {
       color: #252a2e; }
 
@@ -104,7 +109,32 @@ p {
     position: absolute;
     left: 50%;
     top: 30%;
-    transform: translate(-50%, -30%); }
+    transform: translate(-50%, -30%);
+    padding: 25px; }
+    .modal .changePicture__currentImg {
+      display: flex;
+      flex-direction: column;
+      align-items: center; }
+      .modal .changePicture__currentImg img {
+        width: 80px;
+        height: 80px; }
+      .modal .changePicture__currentImg__menu {
+        margin-top: 20px; }
+        .modal .changePicture__currentImg__menu input {
+          display: block;
+          margin-bottom: 20px; }
+        .modal .changePicture__currentImg__menu__btns {
+          display: flex;
+          gap: 30px;
+          justify-content: center; }
+          .modal .changePicture__currentImg__menu__btns button {
+            padding: 10px 20px;
+            border-radius: 10px; }
+          .modal .changePicture__currentImg__menu__btns .upload {
+            color: white;
+            background-color: #6545DE; }
+          .modal .changePicture__currentImg__menu__btns .cancel {
+            background-color: #dedede; }
 
 .menu {
   min-width: 350px;

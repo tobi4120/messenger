@@ -20,22 +20,29 @@
     &__list {
         padding: 8px;
 
+        a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 7px;
+            border-radius: 7px;
+            width: 100%;
+            transition: 0.2s;
+
+            &:hover {
+                background-color: $hover;
+            }
+        }
+
         &__listItem {
             font-size: 0.9rem;
             display: flex;
             align-items: center;
             gap: 10px;
             cursor: pointer;
-            transition: 0.2s;
-            padding: 7px;
-            border-radius: 7px;
 
             svg {
                 font-size: 1.2rem;
-            }
-
-            &:hover {
-                background-color: $hover;
             }
         }
 
