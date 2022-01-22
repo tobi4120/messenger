@@ -65,6 +65,9 @@ const NewConvo: React.FC<props> = (props) => {
         if (index > -1) {
             setUsersInConvo(usersInConvo.filter(userInArray => userInArray != user));
 
+            // Update convoObject to account for removed user
+            setConvoObject({ ...convoObject, members: convoObject.members.filter(userInArray => userInArray != user) });
+
             // Autofocus the input
             inputRef.current?.focus();
         }
