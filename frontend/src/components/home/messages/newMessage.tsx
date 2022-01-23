@@ -25,21 +25,24 @@ const NewMessage: React.FC<props> = (props) => {
     const convoRef = useRef<convo>(props.oldConvo);
     convoRef.current = props.oldConvo;
 
-    // Web socket
-    const ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
-    const roomName = JSON.parse(props.convoID.toString());
-    const chatSocket = new WebSocket(
-        ws_scheme + 
-        '://' +
-        window.location.host +
-        '/ws/convo/' +
-        roomName +
-        '/'
-    );
+    // Web socket ref
+    let chatSocket = useRef<any>(null);
 
     useEffect(() => { 
+        // Web socket initialization
+        const ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+        const roomName = JSON.parse(props.convoID.toString());
+        chatSocket.current = new WebSocket(
+            ws_scheme + 
+            '://' +
+            window.location.host +
+            '/ws/convo/' +
+            roomName +
+            '/'
+        );
+
         // Web socket -- on message
-        chatSocket.onmessage = (e) => {
+        chatSocket.current.onmessage = (e: any) => {
             const msg = JSON.parse(e.data);
 
             // Update messages state (so the new message shows automatically on the screen)
@@ -65,19 +68,12 @@ const NewMessage: React.FC<props> = (props) => {
             "convo": props.oldConvo.id
         }
         // Send message to chatSocket
-        chatSocket.send(JSON.stringify(message));
+        chatSocket.current.send(JSON.stringify(message));
 
-        // Message for homeSocket
-        const message2 = {
-            "id": 1,
-            "message": state.newMessage,
-            "sentAt": new Date().toISOString(),
-            "user": props.user,
-            "convo": props.oldConvo
-        }
+        const message2 = {...message, convo: props.oldConvo}
 
         // Send message to homeSocket
-        //props.homeSocket.send(JSON.stringify(message2));
+        props.homeSocket.send(JSON.stringify(message2));
 
         // Clear textbox
         setState({ ...state, newMessage: "" });
