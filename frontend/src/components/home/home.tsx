@@ -45,13 +45,7 @@ const Home: React.FC = (props) => {
     if (location.pathname !== "/" && location.pathname !== "/convo") urlIsNot_convoID = false
 
     // Web socket
-    const ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
-    const homeSocket = new WebSocket(
-        ws_scheme +
-        '://' +
-        window.location.host +
-        '/ws/'
-    );
+    let homeSocket = useRef<any>(null);
 
     useEffect(() => {
         appStart();
@@ -60,9 +54,18 @@ const Home: React.FC = (props) => {
     const appStart = async () => {
         // Verify user
         await checkToken();
+
+        // Web socket
+        const ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+        homeSocket.current = new WebSocket(
+            ws_scheme +
+            '://' +
+            window.location.host +
+            '/ws/'
+        );
        
         // Web socket -- on message
-        homeSocket.onmessage = (e) => {
+        homeSocket.current.onmessage = (e: any) => {
             const msg = JSON.parse(e.data);
 
             // Update state 
@@ -149,7 +152,7 @@ const Home: React.FC = (props) => {
                                         setUser={setUser}
                                         state={state}
                                         setState={setState}
-                                        homeSocket={homeSocket}
+                                        homeSocket={homeSocket.current}
                                         reloadMessages={reloadMessages} />} />
                 </Routes>
 

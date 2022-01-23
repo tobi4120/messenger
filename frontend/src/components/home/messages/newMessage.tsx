@@ -47,19 +47,37 @@ const NewMessage: React.FC<props> = (props) => {
         }
     }, [])
 
-    const saveMessage = async () => {
+    const saveMessage = () => {
         // Check if message is empty
         if (state.newMessage === "") return
 
+        // Check if homeSocket is null
+        if (!props.homeSocket) return
+
         // Call API
-        let response = await saveMessageAPI(state.newMessage, props.user.id, props.convoID);
+        saveMessageAPI(state.newMessage, props.user.id, props.convoID);
 
-        // Update convo field so it's the entire convo, not just the ID
-        response.convo = props.oldConvo
+        const message = {
+            "id": 1,
+            "message": state.newMessage,
+            "sentAt": new Date().toISOString(),
+            "user": props.user,
+            "convo": props.oldConvo.id
+        }
+        // Send message to chatSocket
+        chatSocket.send(JSON.stringify(message));
 
-        // Send message to websockets
-        props.homeSocket.send(JSON.stringify(response));
-        chatSocket.send(JSON.stringify(response));
+        // Message for homeSocket
+        const message2 = {
+            "id": 1,
+            "message": state.newMessage,
+            "sentAt": new Date().toISOString(),
+            "user": props.user,
+            "convo": props.oldConvo
+        }
+
+        // Send message to homeSocket
+        //props.homeSocket.send(JSON.stringify(message2));
 
         // Clear textbox
         setState({ ...state, newMessage: "" });
