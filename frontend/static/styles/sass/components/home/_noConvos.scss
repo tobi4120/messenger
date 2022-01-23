@@ -1,0 +1,22 @@
+.no-convos {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $hover;
+
+    &__text {
+        font-size: 1.1rem;
+        font-weight: 450;
+        color: $med-grey;
+    }
+}
+
+.no-convos-menu {
+    text-align: center;
+
+    &__text {
+        display: block;
+        margin-top: 35px;
+    }
+}

@@ -52,6 +52,13 @@ const Menu: React.FC<Props> = (props) => {
                     )
                 })}
             </div>
+
+            {/* No convos */}
+            { (props.user.convos.length === 0 && !props.state.newChat) &&
+                <div className="no-convos-menu">
+                    <p className="no-convos-menu__text">No messages found.</p>
+                </div> }
+
         </div>
     )
 };

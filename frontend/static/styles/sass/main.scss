@@ -19,6 +19,9 @@
     @import "./components/home/messages/message";
     @import "./components/home/messages/newConvo";
 
+    @import "./components/home/loader";
+    @import "./components/home/noConvos";
+
     // Auth
     @import "./components/auth";
 

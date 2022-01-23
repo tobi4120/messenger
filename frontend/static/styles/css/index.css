@@ -68,6 +68,7 @@ p {
   right: 0;
   background-color: white;
   color: #252a2e;
+  z-index: 10;
   box-shadow: rgba(15, 15, 15, 0.15) 0px 1px 10px 1px;
   border: 1px solid #dedede;
   border-radius: 7px; }
@@ -377,6 +378,34 @@ p {
         margin-right: 10px; }
       .newConvo__addUsers__user span {
         cursor: pointer; }
+
+.loader {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #6545DE;
+  font-size: 1.1rem;
+  transform: scale(1.1); }
+
+.no-convos {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f3f2f2; }
+  .no-convos__text {
+    font-size: 1.1rem;
+    font-weight: 450;
+    color: #6b6b6b; }
+
+.no-convos-menu {
+  text-align: center; }
+  .no-convos-menu__text {
+    display: block;
+    margin-top: 35px; }
 
 .auth {
   display: flex;

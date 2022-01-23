@@ -124,7 +124,7 @@ const Home: React.FC = (props) => {
         };
     };
 
-    if (!state.isLoaded) return <Loader />
+    if (!state.isLoaded) return <div style={{ "height": "100vh" }}><Loader /></div>
 
     if (!state.authenticated || !user) return <Navigate to="/login" />
 
@@ -158,8 +158,8 @@ const Home: React.FC = (props) => {
 
                 {/* No chats */}
                 { urlIsNot_convoID && 
-                    <div>
-                        Select a chat or start a new conversation
+                    <div className="no-convos">
+                        <p className="no-convos__text">Select a chat or start a new conversation</p>
                     </div> 
                 }
             </div>
