@@ -6,12 +6,14 @@ import { useNavigate  } from 'react-router-dom';
 
 interface Props {
     user: user
+    convos: any
     state: any
     setState: any
 }
 
 const Menu: React.FC<Props> = (props) => {  
     const navigate = useNavigate();
+    console.log(props.convos)
 
     return (
         <div className="menu">
@@ -41,7 +43,7 @@ const Menu: React.FC<Props> = (props) => {
 
             {/* Convos */}
             <div className="menu__body">
-                {props.user.convos.map(convo => {
+                {props.convos.map((convo: any) => {
                     return (
                         <ConvoItem 
                             key={convo.id} 

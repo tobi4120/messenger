@@ -30,6 +30,7 @@ const Home: React.FC = (props) => {
 
     // User state
     const [user, setUser] = useState<user>();
+    const [convos, setConvos] = useState<any>();
 
     // User ref
     const userRef = useRef<user | undefined>(user);
@@ -74,7 +75,7 @@ const Home: React.FC = (props) => {
                 // Existing msg
                 const convoIndex = userRef.current.convos.findIndex((x: any) => x.id === msg.convo.id) 
                 if (convoIndex > -1) {
-                    updateMenu(userRef.current, msg.convo.id, msg, setUser)
+                    updateMenu(userRef.current, msg.convo.id, msg, setUser, setConvos)
 
                 // New msg
                 } else {
@@ -106,6 +107,7 @@ const Home: React.FC = (props) => {
 
             if (response) {
                 setUser(response.data);
+                setConvos(response.data.convos);
             }
 
             // Check if user has any convos
@@ -142,6 +144,7 @@ const Home: React.FC = (props) => {
             <div className="body">
                 <Menu 
                     user={user}
+                    convos={convos}
                     state={state}
                     setState={setState} />
                 <Routes>
