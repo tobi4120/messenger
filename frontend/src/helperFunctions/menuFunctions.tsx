@@ -1,16 +1,15 @@
-import { user, message } from "../components/interfaces";
+import { message, convo } from "../components/interfaces";
 
-export const updateMenu = (user: user, convoID: number, message: message, setUserFunc: any, setConvosFunc: any) => {
+export const updateMenu = (convos: convo[], convoID: number, message: message, setConvosFunc: any) => {
 
     // Get the correct convo index from the user's convos
-    const convoIndex = user.convos.findIndex(x => x.id === convoID) 
+    const convoIndex = convos.findIndex(x => x.id === convoID) 
 
     // Append new message to user's convo messages
-    let newConvos = user.convos;
-    let newConvos2 = user.convos;
+    let newConvos = convos;
 
     if (convoIndex > -1) {
-        newConvos2 = [...user.convos.slice(0, convoIndex), {...user.convos[convoIndex], messages: [...user.convos[convoIndex].messages, message] }, ...user.convos.slice(convoIndex + 1)]
+        newConvos = [...convos.slice(0, convoIndex), {...convos[convoIndex], messages: [...convos[convoIndex].messages, message] }, ...convos.slice(convoIndex + 1)]
     }
 
     // Move the convo to the front of all of the convos (so that it will show first in the menu)
@@ -18,6 +17,5 @@ export const updateMenu = (user: user, convoID: number, message: message, setUse
     newConvos.unshift(convo[0]);
 
     // Update user state (so the menu updates) 
-    setUserFunc({ ...user, convos: newConvos })
-    setConvosFunc(newConvos2)
+    setConvosFunc(newConvos);
 }

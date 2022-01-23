@@ -5,7 +5,7 @@ import LoadMessages from "./messages/loadMessages";
 import { getUserData } from "../API/auth";
 import { Navigate } from 'react-router-dom';
 import Loader from "../other/loading";
-import { user } from "../interfaces";
+import { user, convo } from "../interfaces";
 import { updateMenu } from "../../helperFunctions/menuFunctions";
 import Header from "../other/header";
 
@@ -30,11 +30,17 @@ const Home: React.FC = (props) => {
 
     // User state
     const [user, setUser] = useState<user>();
-    const [convos, setConvos] = useState<any>();
 
     // User ref
     const userRef = useRef<user | undefined>(user);
     userRef.current = user
+
+    // Convos state
+    const [convos, setConvos] = useState<convo[]>();
+
+    // Convos ref
+    const convosRef = useRef<convo[] | undefined>(convos);
+    convosRef.current = convos
 
     // Reload messages
     const [reloadMessages, setReloadMessages] = useState<number>(0);
@@ -70,20 +76,20 @@ const Home: React.FC = (props) => {
             const msg = JSON.parse(e.data);
 
             // Update state 
-            if (userRef.current) {
+            if (convosRef.current) {
                 
                 // Existing msg
-                const convoIndex = userRef.current.convos.findIndex((x: any) => x.id === msg.convo.id) 
+                const convoIndex = convosRef.current.findIndex((x: any) => x.id === msg.convo.id) 
                 if (convoIndex > -1) {
-                    updateMenu(userRef.current, msg.convo.id, msg, setUser, setConvos)
+                    updateMenu(convosRef.current, msg.convo.id, msg, setConvos)
 
                 // New msg
                 } else {
                     const userIndex = msg.convo.members.findIndex((x: any) => x.email === userRef.current?.email) 
                     
                     if (userIndex > -1) {
-                        // Prepend convo to user object
-                        setUser({ ...userRef.current, convos: [msg.convo, ...userRef.current.convos] }); 
+                        // Prepend convo to convos state
+                        setConvos([msg.convo, ...convosRef.current]); 
                     }
                 }
             }
