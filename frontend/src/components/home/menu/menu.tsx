@@ -13,7 +13,6 @@ interface Props {
 
 const Menu: React.FC<Props> = (props) => {  
     const navigate = useNavigate();
-    console.log(props.convos)
 
     return (
         <div className="menu">
@@ -56,7 +55,7 @@ const Menu: React.FC<Props> = (props) => {
             </div>
 
             {/* No convos */}
-            { (props.user.convos.length === 0 && !props.state.newChat) &&
+            { (props.convos.length === 0 && !props.state.newChat) &&
                 <div className="no-convos-menu">
                     <p className="no-convos-menu__text">No messages found.</p>
                 </div> }
